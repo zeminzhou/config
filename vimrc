@@ -5,10 +5,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
 Plug 'edkolev/tmuxline.vim'
-Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion' 
 Plug 'iamcco/markdown-preview.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
+Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 "Plug 'w0rp/ale'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'jpalardy/vim-slime'
@@ -61,8 +62,6 @@ nnoremap <F3> :NERDTreeMirror<CR>
 nnoremap <F3> :NERDTreeToggle<CR>
 
 " airline
-"let g:airline_section_b = 'B'
-"let g:airline_section_y = 'Y'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'distinguished'
