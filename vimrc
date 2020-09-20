@@ -1,3 +1,23 @@
+" ==============================================================================
+" ================================ <Leader> ====================================
+" ==============================================================================
+" <Leader>d     :db<CR>
+" <Leader>rn    :set relativenumber!<CR> 
+" <Leader>gb    :GoBuild<CR> 
+" <Leader>gr    :GoRun<CR> 
+" <Leader>grf   :GoReferrers<CR> 
+" <Leader>c     :ALEToggle<CR> 
+" <Leader>l     <Plug>(easymotion-lineforward)
+" <Leader>j     <Plug>(easymotion-j)
+" <Leader>k     <Plug>(easymotion-k)
+" <Leader>h     <Plug>(easymotion-linebackward)
+" <Leader>tt    :TagbarToggle<CR>
+" <Leader>ut    :UndotreeToggle<CR> 
+" <Leader>gt    :GitGutterToggle<CR>
+" <Leader>f     :F %<left><left>
+" ==============================================================================
+
+
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -10,6 +30,11 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
+Plug 'mbbill/undotree'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'brooth/far.vim'
 "Plug 'w0rp/ale'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'jpalardy/vim-slime'
@@ -28,6 +53,7 @@ set cursorline
 set wrap
 set ignorecase
 set smartcase
+set autochdir
 
 set tabstop=4 
 set softtabstop=4 
@@ -37,8 +63,9 @@ set background=dark
 set t_Co=256
 set encoding=utf-8
 set history=50
-"set laststatus=2
+set laststatus=2
 set colorcolumn=81
+set updatetime=100
 
 syntax enable
 colorscheme solarized
@@ -50,7 +77,22 @@ inoremap <C-j> <down>
 inoremap jk <esc>
 vnoremap jk <esc>
 
+vnoremap Y "+y
+nnoremap <C-h> :bp<CR>
+nnoremap <C-l> :bn<CR>
+nnoremap <Leader>d :bd<CR>
+
 nnoremap <Leader>rn :set relativenumber!<CR>
+
+silent !mkdir -p ~/.vim/tmp/backup
+silent !mkdir -p ~/.vim/tmp/undo
+set backupdir=~/.vim/tmp/backup,.
+set directory=~/.vim/tmp/backup,.
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/tmp/undo,.
+endif
+
 
 " vim-go
 nnoremap <Leader>gb :GoBuild<CR>
@@ -63,10 +105,9 @@ nnoremap <F3> :NERDTreeToggle<CR>
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme = 'distinguished'
-nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>n :bn<CR>
 
 " YCM
 "let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -130,3 +171,23 @@ let g:tmuxline_preset = {
 
 " tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
+
+" unodotree
+nnoremap <Leader>ut :UndotreeToggle<CR>
+
+" vim-gitgutter
+nnoremap <Leader>gt :GitGutterToggle<CR>
+let g:gitgutter_enabled = 0
+let g:gitgutter_sign_allow_clobber = 1
+let g:gitgutter_sign_added = '++'
+let g:gitgutter_sign_modified = '##'
+let g:gitgutter_sign_removed = '--'
+let g:gitgutter_sign_removed_first_line = '*^'
+let g:gitgutter_sign_removed_above_and_below = '*#'
+let g:gitgutter_sign_modified_removed = '*!'
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+" far.vim
+nnoremap <Leader>f :F %<left><left>

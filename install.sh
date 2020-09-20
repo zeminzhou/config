@@ -12,4 +12,3 @@ echo ">>>>install ycm<<<<"
 sudo apt install build-essential cmake python3-dev clang
 cd ~/.vim/plugged/YouCompleteMe/
 python3 install.py --go-completer --clangd-completer
-cp ycm_extra_conf.py ~/.vim/
