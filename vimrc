@@ -35,6 +35,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'brooth/far.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 "Plug 'w0rp/ale'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'jpalardy/vim-slime'
@@ -54,6 +55,7 @@ set wrap
 set ignorecase
 set smartcase
 set autochdir
+set nocompatible
 
 set tabstop=4 
 set softtabstop=4 
@@ -66,6 +68,7 @@ set history=50
 set laststatus=2
 set colorcolumn=81
 set updatetime=100
+set backspace=indent,eol,start
 
 syntax enable
 colorscheme solarized
@@ -84,8 +87,8 @@ nnoremap <Leader>d :bd<CR>
 
 nnoremap <Leader>rn :set relativenumber!<CR>
 
-silent !mkdir -p ~/.vim/tmp/backup
-silent !mkdir -p ~/.vim/tmp/undo
+"silent !mkdir -p ~/.vim/tmp/backup
+"silent !mkdir -p ~/.vim/tmp/undo
 set backupdir=~/.vim/tmp/backup,.
 set directory=~/.vim/tmp/backup,.
 if has('persistent_undo')
@@ -136,6 +139,10 @@ let g:ale_linters = {
 \   'c': ['clang'],
 \   'python': ['pylint'],
 \}
+
+" fzf
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
