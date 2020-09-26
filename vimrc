@@ -5,7 +5,7 @@
 " <Leader>rn    :set relativenumber!<CR> 
 " <Leader>gb    :GoBuild<CR> 
 " <Leader>gr    :GoRun<CR> 
-" <Leader>grf   :GoReferrers<CR> 
+" <Leader>gf    :GoReferrers<CR> 
 " <Leader>c     :ALEToggle<CR> 
 " <Leader>l     <Plug>(easymotion-lineforward)
 " <Leader>j     <Plug>(easymotion-j)
@@ -14,27 +14,34 @@
 " <Leader>tt    :TagbarToggle<CR>
 " <Leader>ut    :UndotreeToggle<CR> 
 " <Leader>gt    :GitGutterToggle<CR>
-" <Leader>f     :F %<left><left>
+" <Leader>fw    :F %<left><left>
+" <Leader>ff    :Files<CR>
+" <Leader>fb    :Buffers<CR>
+" <Leader>to    :FloatermToggle<CR>
+" <Leader>th    <C-\><C-n>:FloatermToggle<CR>
+" <Leader>tc    <C-\><C-n>:FloatermKill<CR>
+" ==============================================================================
+" ==============================================================================
 " ==============================================================================
 
-
-call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'
+call plug#begin('~/.vim/plugged') 
+Plug 'scrooloose/nerdtree' 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
-Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion' 
 Plug 'iamcco/markdown-preview.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'brooth/far.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 "Plug 'w0rp/ale'
 "Plug 'davidhalter/jedi-vim'
@@ -47,8 +54,8 @@ let $VIMHOME = expand('~/.vim')
 set number
 set ruler
 set autoindent 
-set hlsearch incsearch
 set expandtab
+set hlsearch incsearch
 set showcmd
 set cursorline
 set wrap
@@ -56,6 +63,7 @@ set ignorecase
 set smartcase
 set autochdir
 set nocompatible
+set relativenumber
 
 set tabstop=4 
 set softtabstop=4 
@@ -100,7 +108,7 @@ endif
 " vim-go
 nnoremap <Leader>gb :GoBuild<CR>
 nnoremap <Leader>gr :GoRun<CR>
-nnoremap <Leader>grf :GoReferrers<CR>
+nnoremap <Leader>gf :GoReferrers<CR>
 
 " NERDTree
 nnoremap <F3> :NERDTreeMirror<CR>
@@ -142,7 +150,10 @@ let g:ale_linters = {
 
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.6 } }
+let g:fzf_preview_window = 'right:60%'
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fb :Buffers<CR>
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
@@ -159,22 +170,6 @@ nmap <Leader>l <Plug>(easymotion-lineforward)
 nmap <Leader>j <Plug>(easymotion-j)
 nmap <Leader>k <Plug>(easymotion-k)
 nmap <Leader>h <Plug>(easymotion-linebackward)
-
-" tmuxline
-let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '>',
-    \ 'right' : '',
-    \ 'right_alt' : '<',
-    \ 'space' : ' '}
-
-let g:tmuxline_preset = {
-   \'a'       : '#S',
-   \'win'     : '#I #W',
-   \'cwin'    : '#I #W',
-   \'y'       : '#W %R',
-   \'z'       : '#H',
-   \'options' : {'status-justify' : 'left'}}
 
 " tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
@@ -197,4 +192,9 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 " far.vim
-nnoremap <Leader>f :F %<left><left>
+nnoremap <Leader>fw :F  %<left><left>
+
+" vim-floaterm
+nnoremap <silent> <Leader>to :FloatermToggle<CR>
+tnoremap <silent> <Leader>th <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <Leader>tc <C-\><C-n>:FloatermKill<CR>
