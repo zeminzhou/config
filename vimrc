@@ -6,11 +6,11 @@
 " <Leader>gb    :GoBuild<CR> 
 " <Leader>gr    :GoRun<CR> 
 " <Leader>gf    :GoReferrers<CR> 
-" <Leader>c     :ALEToggle<CR> 
 " <Leader>l     <Plug>(easymotion-lineforward)
 " <Leader>j     <Plug>(easymotion-j)
 " <Leader>k     <Plug>(easymotion-k)
 " <Leader>h     <Plug>(easymotion-linebackward)
+" <Leader>ct    :ALEToggle<CR> 
 " <Leader>tt    :TagbarToggle<CR>
 " <Leader>ut    :UndotreeToggle<CR> 
 " <Leader>gt    :GitGutterToggle<CR>
@@ -43,7 +43,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'brooth/far.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-"Plug 'w0rp/ale'
+Plug 'ludovicchabant/vim-gutentags'
+"Plug 'dense-analysis/ale'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'jpalardy/vim-slime'
 call plug#end()
@@ -56,12 +57,12 @@ set ruler
 set autoindent 
 set expandtab
 set hlsearch incsearch
-set showcmd
 set cursorline
 set wrap
 set ignorecase
 set smartcase
 set autochdir
+set autowrite
 set nocompatible
 set relativenumber
 
@@ -125,7 +126,7 @@ let g:airline_theme = 'distinguished'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_show_diagnostics_ui = 1
-let g:ycm_always_populate_location_list = 1
+let g:ycm_always_populate_location_list = 0
 let g:ycm_error_symbol = '>:'
 let g:ycm_warning_symbol = '-:'
 
@@ -141,7 +142,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
 let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_highlight_linenrs = 1
-nmap <Leader>c :ALEToggle<CR>
+nmap <Leader>ct :ALEToggle<CR>
 let g:ale_linters = {
 \   'c++': ['clang'],
 \   'c': ['clang'],
@@ -198,3 +199,17 @@ nnoremap <Leader>fw :F  %<left><left>
 nnoremap <silent> <Leader>to :FloatermToggle<CR>
 tnoremap <silent> <Leader>th <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <Leader>tc <C-\><C-n>:FloatermKill<CR>
+
+" vim-gutentags
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+let g:gutentags_ctags_tagfile = '.tags'
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+set showcmd
