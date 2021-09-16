@@ -3,9 +3,6 @@
 " ==============================================================================
 " <Leader>d     :db<CR>
 " <Leader>rn    :set relativenumber!<CR> 
-" <Leader>gb    :GoBuild<CR> 
-" <Leader>gr    :GoRun<CR> 
-" <Leader>gf    :GoReferrers<CR> 
 " <Leader>l     <Plug>(easymotion-lineforward)
 " <Leader>j     <Plug>(easymotion-j)
 " <Leader>k     <Plug>(easymotion-k)
@@ -14,12 +11,19 @@
 " <Leader>tt    :TagbarToggle<CR>
 " <Leader>ut    :UndotreeToggle<CR> 
 " <Leader>gt    :GitGutterToggle<CR>
+" <Leader>gn    :GitGutterNextHunk<CR>
+" <Leader>gp    :GitGutterPrevHunk<CR>
 " <Leader>fw    :F %<left><left>
 " <Leader>ff    :Files<CR>
 " <Leader>fb    :Buffers<CR>
 " <Leader>to    :FloatermToggle<CR>
 " <Leader>th    <C-\><C-n>:FloatermToggle<CR>
 " <Leader>tc    <C-\><C-n>:FloatermKill<CR>
+" <leader>cs    GscopeFind s <C-R><C-W><cr>
+" <leader>cg    GscopeFind g <C-R><C-W><cr>
+" <leader>cc    GscopeFind c <C-R><C-W><cr>
+" <leader>ct    GscopeFind t <C-R><C-W><cr>
+" <leader>ce    GscopeFind e <C-R><C-W><cr>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -29,21 +33,22 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'Valloric/YouCompleteMe'
+Plug 'rking/ag.vim'
 Plug 'easymotion/vim-easymotion' 
-Plug 'iamcco/markdown-preview.vim'
-Plug 'altercation/vim-colors-solarized'
-Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'brooth/far.vim'
+Plug 'skywind3000/gutentags_plus'
 Plug 'voldikss/vim-floaterm'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-fugitive'
+"Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+"Plug 'terryma/vim-multiple-cursors'
+"Plug 'brooth/far.vim'
 "Plug 'dense-analysis/ale'
 "Plug 'davidhalter/jedi-vim'
 "Plug 'jpalardy/vim-slime'
@@ -61,11 +66,12 @@ set cursorline
 set wrap
 set ignorecase
 set smartcase
-set autochdir
+"set autochdir
 set autowrite
 set nocompatible
 set relativenumber
 
+set cmdheight=2
 set tabstop=4 
 set softtabstop=4 
 set shiftwidth=4
@@ -96,8 +102,8 @@ nnoremap <Leader>d :bd<CR>
 
 nnoremap <Leader>rn :set relativenumber!<CR>
 
-"silent !mkdir -p ~/.vim/tmp/backup
-"silent !mkdir -p ~/.vim/tmp/undo
+silent !mkdir -p ~/.vim/tmp/backup
+silent !mkdir -p ~/.vim/tmp/undo
 set backupdir=~/.vim/tmp/backup,.
 set directory=~/.vim/tmp/backup,.
 if has('persistent_undo')
@@ -107,9 +113,9 @@ endif
 
 
 " vim-go
-nnoremap <Leader>gb :GoBuild<CR>
-nnoremap <Leader>gr :GoRun<CR>
-nnoremap <Leader>gf :GoReferrers<CR>
+"nnoremap <Leader>gb :GoBuild<CR>
+"nnoremap <Leader>gr :GoRun<CR>
+"nnoremap <Leader>gf :GoReferrers<CR>
 
 " NERDTree
 nnoremap <F3> :NERDTreeMirror<CR>
@@ -119,6 +125,9 @@ nnoremap <F3> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#gutentags#enabled = 1
+let g:airline#extensions#fzf#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline_theme = 'distinguished'
 
 " YCM
@@ -129,6 +138,8 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_always_populate_location_list = 0
 let g:ycm_error_symbol = '>:'
 let g:ycm_warning_symbol = '-:'
+let g:ycm_complete_in_comments=1
+let g:ycm_collect_identifiers_from_tags_files=1
 
 " ale
 let g:ale_lint_on_enter = 1
@@ -180,6 +191,8 @@ nnoremap <Leader>ut :UndotreeToggle<CR>
 
 " vim-gitgutter
 nnoremap <Leader>gt :GitGutterToggle<CR>
+nnoremap <Leader>gn :GitGutterNextHunk<CR>
+nnoremap <Leader>gp :GitGutterPrevHunk<CR>
 let g:gitgutter_enabled = 0
 let g:gitgutter_sign_allow_clobber = 1
 let g:gitgutter_sign_added = '++'
@@ -192,24 +205,44 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
-" far.vim
-nnoremap <Leader>fw :F  %<left><left>
-
 " vim-floaterm
 nnoremap <silent> <Leader>to :FloatermToggle<CR>
 tnoremap <silent> <Leader>th <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <Leader>tc <C-\><C-n>:FloatermKill<CR>
 
 " vim-gutentags
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
+let g:gutentags_modules = []
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+let g:gutentags_auto_add_gtags_cscope = 0
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_enabled = 1
+let g:gutentags_plus_nomap = 1
+noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
+noremap <silent> <leader>cg :GscopeFind g <C-R><C-W><cr>
+noremap <silent> <leader>cc :GscopeFind c <C-R><C-W><cr>
+noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
+noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
+"noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+"noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+"noremap <silent> <leader>cd :GscopeFind d <C-R><C-W><cr>
+"noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
+"noremap <silent> <leader>cz :GscopeFind z <C-R><C-W><cr>
 set showcmd
