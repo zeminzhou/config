@@ -1,9 +1,9 @@
 install vim-plus
 (curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
 
-install universal ctags
+install universal ctags(https://github.com/universal-ctags/ctags)
 
-install global(gtags)
+install global(gtags, https://ftp.gnu.org/pub/gnu/global/)
 
 install ripgrep(rg)
 
