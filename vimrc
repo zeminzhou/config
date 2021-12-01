@@ -139,9 +139,9 @@ endif
 let g:startify_change_to_dir = 0
 
 " vim-go
-nnoremap <Leader>gd :GoDef<CR>
-nnoremap <leader>gi :GoImplements<CR>
-nnoremap <Leader>gr :GoReferrers<CR>
+" nnoremap <Leader>gd :GoDef<CR>
+" nnoremap <leader>gi :GoImplements<CR>
+" nnoremap <Leader>gr :GoReferrers<CR>
 
 " NERDTree
 nnoremap <leader>nt :NERDTreeMirror<CR>
@@ -166,9 +166,16 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
 let g:airline_theme = 'distinguished'
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
+let g:airline#extensions#ale#show_line_numbers = 1
+let g:airline#extensions#ale#open_lnum_symbol = '(L'
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+
 
 " YCM 
 "let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -195,16 +202,11 @@ let g:ale_sign_warning = ">>"
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
-let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_highlight_linenrs = 1
+let g:ale_disable_lsp = 1
 nnoremap <Leader>at :ALEToggle<CR>
 nnoremap <Leader>an :ALENext<CR>
 nnoremap <Leader>ap :ALEPrevious<CR>
-let g:ale_linters = {
-\   'c++': ['clangd'],
-\   'c': ['clangd'],
-\   'python': ['pylint'],
-\}
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
@@ -372,11 +374,11 @@ let g:Lf_CacheDirectory = expand('~')
 let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
 " key-map
 let g:Lf_ShortcutF = '<leader>ff'
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
-noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", \"")<CR><CR>
-noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", \"")<CR><CR>
-noremap <leader>fh :<C-U><C-R>=printf("Leaderf cmdHistory %s", \"")<CR><CR>
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
+noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
+noremap <leader>fh :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
 noremap <leader>fw :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
 
