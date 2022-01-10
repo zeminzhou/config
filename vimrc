@@ -60,10 +60,10 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mbbill/undotree'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-" Plug 'dense-analysis/ale'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'rking/ag.vim'
-" Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
+" Plug 'dense-analysis/ale'
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
 " Plug 'nathanaelkane/vim-indent-guides'
@@ -141,9 +141,11 @@ endif
 let g:startify_change_to_dir = 0
 
 " vim-go
-" nnoremap <Leader>gd :GoDef<CR>
-" nnoremap <leader>gi :GoImplements<CR>
-" nnoremap <Leader>gr :GoReferrers<CR>
+let g:go_gopls_enabled = 0
+let g:go_fold_enable = []
+
+" rust.vim
+let g:rustfmt_autosave = 1
 
 " NERDTree
 nnoremap <leader>nt :NERDTreeMirror<CR>
@@ -204,21 +206,21 @@ let g:ycm_language_server =
   \ ]
 
 " ale
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'W'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
-let g:ale_sign_highlight_linenrs = 1
-let g:ale_disable_lsp = 1
-nnoremap <Leader>at :ALEToggle<CR>
-nnoremap <Leader>an :ALENext<CR>
-nnoremap <Leader>ap :ALEPrevious<CR>
-let g:ale_linters = {'rust': ['analyzer']}
+" let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_on_save = 0
+" let g:ale_lint_on_text_changed = 'normal'
+" let g:ale_sign_error = 'E'
+" let g:ale_sign_warning = 'W'
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
+" let g:ale_sign_highlight_linenrs = 1
+" let g:ale_disable_lsp = 1
+" nnoremap <Leader>at :ALEToggle<CR>
+" nnoremap <Leader>an :ALENext<CR>
+" nnoremap <Leader>ap :ALEPrevious<CR>
+" let g:ale_linters = {'rust': ['analyzer']}
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
