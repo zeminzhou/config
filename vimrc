@@ -1,4 +1,5 @@
-" ================================ <Leader> ====================================
+" ==============================================================================
+" ==============================================================================
 " ==============================================================================
 " <Leader>d     :db<CR>
 " <Leader>rn    :set relativenumber!<CR> 
@@ -59,11 +60,12 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mbbill/undotree'
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'rking/ag.vim'
+" Plug 'rust-lang/rust.vim'
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
-" Plug 'rking/ag.vim'
 " Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -167,21 +169,21 @@ let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
-let g:airline_theme = 'distinguished'
-let g:airline_left_sep = '>'
-let g:airline_right_sep = '<'
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline#extensions#ale#show_line_numbers = 1
 let g:airline#extensions#ale#open_lnum_symbol = '(L'
 let g:airline#extensions#ale#close_lnum_symbol = ')'
+let g:airline_theme = 'distinguished'
+let g:airline_left_sep = '>'
+let g:airline_right_sep = '<'
 
 
 " YCM 
 "let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/root/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_error_symbol = 'xx'
 let g:ycm_warning_symbol = '>>'
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -191,14 +193,23 @@ nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol<CR>
 nnoremap <silent> <leader>yr :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <leader>yf :YcmCompleter GoToInclude<CR>
 nnoremap <silent> <leader>yt :let g:ycm_auto_trigger = g:ycm_auto_trigger == 1 ? 0 : 1<CR>
+let g:ycm_language_server =
+  \ [
+  \   {
+  \     'name': 'rust',
+  \     'cmdline': [ '/root/.local/bin/rust-analyzer' ],
+  \     'filetypes': [ 'rust' ],
+  \     'project_root_files': [ 'Cargo.toml' ]
+  \   },
+  \ ]
 
 " ale
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 'normal'
-let g:ale_sign_error = "xx"
-let g:ale_sign_warning = ">>"
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
@@ -207,6 +218,7 @@ let g:ale_disable_lsp = 1
 nnoremap <Leader>at :ALEToggle<CR>
 nnoremap <Leader>an :ALENext<CR>
 nnoremap <Leader>ap :ALEPrevious<CR>
+let g:ale_linters = {'rust': ['analyzer']}
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
@@ -365,7 +377,7 @@ let g:Lf_PreviewResult = {
             \ 'Function': 1,
             \ 'Line': 0,
             \ 'Colorscheme': 0,
-            \ 'Rg': 1,
+            \ 'Rg': 0,
             \ 'Gtags': 0
             \}
 " gtags
@@ -380,5 +392,6 @@ noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
 noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
 noremap <leader>fh :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
-noremap <leader>fw :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
+noremap <leader>fw :<C-U><C-R>=printf("Leaderf! --stayOpen rg --heading --current-buffer -e %s", expand("<cword>"))<CR><CR>
+command Rg execute "Leaderf --stayOpen rg"
 
