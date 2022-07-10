@@ -7,35 +7,32 @@
 " <Leader>j     <Plug>(easymotion-j)
 " <Leader>k     <Plug>(easymotion-k)
 " <Leader>h     <Plug>(easymotion-linebackward)
-" <Leader>at    :ALEToggle<CR> 
-" <Leader>an    :ALENext<CR>
-" <Leader>ap    :ALEPrevious<CR>
 " <Leader>tt    :TagbarToggle<CR>
 " <Leader>ut    :UndotreeToggle<CR> 
 " <Leader>gt    :GitGutterToggle<CR>
 " <Leader>hn    :GitGutterNextHunk<CR>
 " <Leader>hp    :GitGutterPrevHunk<CR>
-" <leader>fb    :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
-" <leader>ft    :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
-" <leader>fl    :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
-" <leader>fc    :<C-U><C-R>=printf("Leaderf command %s", \"")<CR><CR>
-" <leader>fs    :<C-U><C-R>=printf("Leaderf searchHistory %s", \"")<CR><CR>
-" <leader>fh    :<C-U><C-R>=printf("Leaderf cmdHistory %s", \"")<CR><CR>
-" <leader>fw    :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
-" <leader>cd    :GscopeFind g <C-R><C-W><cr>
-" <leader>cr    :GscopeFind c <C-R><C-W><cr>
-" <leader>cc    :GscopeFind d <C-R><C-W><cr>
-" <leader>ca    :GscopeFind a <C-R><C-W><cr>
-" <leader>ce    :GscopeFind e <C-R><C-W><cr>
-" <leader>cs    :GscopeFind s <C-R><C-W><cr>
-" <leader>ct    :GscopeFind t <C-R><C-W><cr>
-" <leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-" <leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-" <leader>yd    :YcmCompleter GoToDefinition<CR>
-" <leader>yr    :YcmCompleter GoToReferences<CR>
-" <leader>yc    :YcmCompleter GoToDeclaration<CR>
-" <leader>ys    :YcmCompleter GoToSymbol<CR>
-" <leader>yi    :YcmCompleter GoToInclude<CR>
+" <Leader>fb    :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
+" <Leader>ft    :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
+" <Leader>fl    :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
+" <Leader>fc    :<C-U><C-R>=printf("Leaderf command %s", \"")<CR><CR>
+" <Leader>fs    :<C-U><C-R>=printf("Leaderf searchHistory %s", \"")<CR><CR>
+" <Leader>fh    :<C-U><C-R>=printf("Leaderf cmdHistory %s", \"")<CR><CR>
+" <Leader>fw    :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
+" <Leader>cd    :GscopeFind g <C-R><C-W><cr>
+" <Leader>cr    :GscopeFind c <C-R><C-W><cr>
+" <Leader>cc    :GscopeFind d <C-R><C-W><cr>
+" <Leader>ca    :GscopeFind a <C-R><C-W><cr>
+" <Leader>ce    :GscopeFind e <C-R><C-W><cr>
+" <Leader>cs    :GscopeFind s <C-R><C-W><cr>
+" <Leader>ct    :GscopeFind t <C-R><C-W><cr>
+" <Leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+" <Leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+" <Leader>yd    :YcmCompleter GoToDefinition<CR>
+" <Leader>yr    :YcmCompleter GoToReferences<CR>
+" <Leader>yc    :YcmCompleter GoToDeclaration<CR>
+" <Leader>ys    :YcmCompleter GoToSymbol<CR>
+" <Leader>yi    :YcmCompleter GoToInclude<CR>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -46,7 +43,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'Valloric/YouCompleteMe'                                                    
+Plug 'tabnine/YouCompleteMe'                                                    
 Plug 'easymotion/vim-easymotion'
 Plug 'altercation/vim-colors-solarized'                                          
 Plug 'fatih/vim-go'
@@ -63,9 +60,22 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'rking/ag.vim'
 Plug 'rust-lang/rust.vim'
-" Plug 'dense-analysis/ale'
+Plug 'lfv89/vim-interestingwords'
+Plug 'itchyny/vim-cursorword'
+
+if has('nvim')
+    Plug 'github/copilot.vim'
+endif
+
+Plug 'puremourning/vimspector'
+Plug 'sainnhe/everforest'
+
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
+" Plug 'dense-analysis/ale'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 " Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -74,9 +84,6 @@ Plug 'rust-lang/rust.vim'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'jpalardy/vim-slime'
 call plug#end()
-
-" vim-plug
-"let g:plug_url_format="git@github.com/%s.git"
 
 let mapleader = ","
 let $VIMHOME = expand('~/.vim')
@@ -87,6 +94,7 @@ set autoindent
 set expandtab
 set hlsearch incsearch
 set cursorline
+set cursorcolumn
 set wrap
 set ignorecase
 set smartcase
@@ -127,15 +135,25 @@ nnoremap <Leader>d :bd<CR>
 
 nnoremap <Leader>rn :set relativenumber!<CR>
 
-silent !mkdir -p ~/.vim/tmp/backup
-silent !mkdir -p ~/.vim/tmp/undo
-set backupdir=~/.vim/tmp/backup,.
-set directory=~/.vim/tmp/backup,.
-if has('persistent_undo')
-    set undofile
-    set undodir=~/.vim/tmp/undo,.
+if has('nvim')
+    silent !mkdir -p ~/.vim/nvim-tmp/backup
+    silent !mkdir -p ~/.vim/nvim-tmp/undo
+    set backupdir=~/.vim/nnim-tmp/backup,.
+    set directory=~/.vim/nvim-tmp/backup,.
+    if has('persistent_undo')
+        set undofile
+        set undodir=~/.vim/nvim-tmp/undo,.
+    endif
+else
+    silent !mkdir -p ~/.vim/tmp/backup
+    silent !mkdir -p ~/.vim/tmp/undo
+    set backupdir=~/.vim/tmp/backup,.
+    set directory=~/.vim/tmp/backup,.
+    if has('persistent_undo')
+        set undofile
+        set undodir=~/.vim/tmp/undo,.
+    endif
 endif
-
 
 " startify
 let g:startify_change_to_dir = 0
@@ -152,7 +170,7 @@ nnoremap <leader>nt :NERDTreeMirror<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'~',
-                \ 'Staged'    :'✚',
+                \ 'Staged'    :'+',
                 \ 'Untracked' :'*',
                 \ 'Renamed'   :'^',
                 \ 'Unmerged'  :'=',
@@ -179,10 +197,11 @@ let g:airline#extensions#ale#close_lnum_symbol = ')'
 let g:airline_theme = 'distinguished'
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
-
+let g:airline_theme = 'distinguished'
 
 " YCM 
-"let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_show_detailed_diag_in_popup = 1
 let g:ycm_global_ycm_extra_conf = '/root/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_show_diagnostics_ui = 1
@@ -204,23 +223,6 @@ let g:ycm_language_server =
   \     'project_root_files': [ 'Cargo.toml' ]
   \   },
   \ ]
-
-" ale
-" let g:ale_lint_on_enter = 1
-" let g:ale_lint_on_insert_leave = 1
-" let g:ale_lint_on_save = 0
-" let g:ale_lint_on_text_changed = 'normal'
-" let g:ale_sign_error = 'E'
-" let g:ale_sign_warning = 'W'
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_format = 'ale [%linter%] %s [%severity%]'
-" let g:ale_sign_highlight_linenrs = 1
-" let g:ale_disable_lsp = 1
-" nnoremap <Leader>at :ALEToggle<CR>
-" nnoremap <Leader>an :ALENext<CR>
-" nnoremap <Leader>ap :ALEPrevious<CR>
-" let g:ale_linters = {'rust': ['analyzer']}
 
 " markdown-preview
 "let g:mkdp_path_to_chrome = "chrome"
@@ -334,38 +336,15 @@ noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
 set showcmd
 
 " leaderF
-" =============================================================================
-" <C-C>, <ESC>	        quit from LeaderF
-" <C-R>	                switch between fuzzy search mode and regex mode
-" <C-F>	                switch between full path search mode and name only search mode
-" <Tab>	                switch to normal mode
-" <C-U>	                clear the prompt
-" <C-W>	                delete the word before the cursor in the prompt
-" <Up>/<Down>	        wrecall last/next input pattern from history
-" <2-LeftMouse>, <CR>	open the file under cursor or selected(when multiple files are selected)
-" <C-X>	                open in horizontal split window
-" <C-]>	                open in vertical split window
-" <C-T>	                open in new tabpage
-" <C-\>	                show a prompt enable to choose split window method: vertical, horizontal, tabpage, etc
-" <F5>	                refresh the cache
-" <C-LeftMouse>, <C-S>	select multiple files
-" <C-A>	                select all files
-" <C-L>	                clear all selections
-" <C-P>	preview the result
-" <C-Up>	scroll up in the popup preview window
-" <C-Down>	scroll down in the popup preview window
-" =============================================================================
-" Show icons, icons are shown by default
 let g:Lf_ShowDevIcons = 0
 let g:Lf_StlSeparator = { 'left': '>', 'right': '<' }
-" don't show the help in normal mode
 let g:Lf_HideHelp = 0
 let g:Lf_UseCache = 0
 let g:Lf_ShowHidden = 1
 let g:Lf_UseVersionControlTool = 1
 let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_WindowHeight = 0.2
-let g:Lf_WindowPosition = 'bottom'
+let g:Lf_WindowPosition = 'popup'
 let g:Lf_StlColorscheme = 'gruvbox_material'
 " preview
 let g:Lf_PreviewInPopup = 1
