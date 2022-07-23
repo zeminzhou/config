@@ -1,1 +1,1 @@
-# My VIMRC
+# My CONFIG
