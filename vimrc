@@ -1,6 +1,9 @@
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
+" <Leader>db    :bd<CR>
+" <Leader>dt    :tabclose<CR>
+" <Leader>ot    :tabnew<CR>
 " <Leader>rn    :set relativenumber!<CR> 
 " <Leader>l     <Plug>(easymotion-lineforward)
 " <Leader>j     <Plug>(easymotion-j)
@@ -35,8 +38,11 @@
 " <Leader>fs    :<C-U><C-R>=printf("Leaderf searchHistory %s", \"")<CR><CR>
 " <Leader>fh    :<C-U><C-R>=printf("Leaderf cmdHistory %s", \"")<CR><CR>
 " <Leader>fw    :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
-" <leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
-" <leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
+" <Leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
+" <Leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
+" <Leader>m     :call InterestingWords('n')<cr>
+" <Leader>m     :call InterestingWords('v')<cr>
+" <Leader>M     :call UncolorAllWords()<cr>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -78,7 +84,6 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
 " Plug 'dense-analysis/ale'
-" Plug 'easymotion/vim-easymotion'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'nathanaelkane/vim-indent-guides'
@@ -126,18 +131,19 @@ set ambiwidth=double
 syntax enable
 colorscheme gruvbox8_hard
 
-inoremap <C-h> <left>
-inoremap <C-l> <right>
-inoremap <C-k> <up>
-inoremap <C-j> <down>
 inoremap jk <esc>
 vnoremap jk <esc>
 
 vnoremap Y "+y
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
+nnoremap <C-j> :tabprevious<CR>
+nnoremap <C-k> :tabnext<CR>
 
-nnoremap <Leader>rn :set relativenumber!<CR>
+nnoremap <leader>db :bd<CR>
+nnoremap <leader>dt :tabclose<CR>
+nnoremap <leader>ot :tabnew<CR>
+nnoremap <leader>rn :set relativenumber!<CR>
 
 if has('nvim')
     silent !mkdir -p ~/.vim/nvim-tmp/backup
@@ -193,15 +199,18 @@ let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
+let g:airline#extensions#tabline#show_splits = 1
+  let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline#extensions#ale#show_line_numbers = 1
 let g:airline#extensions#ale#open_lnum_symbol = '(L'
 let g:airline#extensions#ale#close_lnum_symbol = ')'
-let g:airline_theme = 'distinguished'
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
 let g:airline_theme = 'distinguished'
+let g:airline_extensions = ['branch', 'tabline']
 
 " YCM 
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -212,6 +221,7 @@ let g:ycm_show_diagnostics_ui = 1
 let g:ycm_error_symbol = 'xx'
 let g:ycm_warning_symbol = '>>'
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_detailed_diagnostics = '<leader>ym'
 nnoremap <silent> <leader>yc :YcmCompleter GoToDeclaration<CR>
 nnoremap <silent> <leader>yd :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol<CR>
@@ -240,27 +250,27 @@ inoremap <F9> <ESC>:MarkdownPreviewStop<CR>i
 " easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-nnoremap <Leader>l <Plug>(easymotion-lineforward)
-nnoremap <Leader>j <Plug>(easymotion-j)
-nnoremap <Leader>k <Plug>(easymotion-k)
-nnoremap <Leader>h <Plug>(easymotion-linebackward)
+nnoremap <leader>l <Plug>(easymotion-lineforward)
+nnoremap <leader>j <Plug>(easymotion-j)
+nnoremap <leader>k <Plug>(easymotion-k)
+nnoremap <leader>h <Plug>(easymotion-linebackward)
 
 " tagbar
-nnoremap <Leader>tt :TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
 
 " unodotree
-nnoremap <Leader>ut :UndotreeToggle<CR>
+nnoremap <leader>ut :UndotreeToggle<CR>
 
 " vim-fugitive
-nnoremap <Leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
 
 " gv.vim
-nnoremap <Leader>gv :GV?<CR>
+nnoremap <leader>gv :GV?<CR>
 
 " vim-gitgutter
-nnoremap <Leader>gt :GitGutterToggle<CR>
-nnoremap <Leader>hn :GitGutterNextHunk<CR>
-nnoremap <Leader>hp :GitGutterPrevHunk<CR>
+nnoremap <leader>gt :GitGutterToggle<CR>
+nnoremap <leader>hn :GitGutterNextHunk<CR>
+nnoremap <leader>hp :GitGutterPrevHunk<CR>
 let g:gitgutter_enabled = 0
 let g:gitgutter_sign_allow_clobber = 1
 let g:gitgutter_sign_added = '++'
@@ -274,9 +284,9 @@ highlight GitGutterChange guifg=#bbbb00 ctermfg = 3
 highlight GitGutterDelete guifg=#ff2222 ctermfg = 1
 
 " vim-floaterm
-nnoremap <silent> <Leader>to :FloatermToggle<CR>
-tnoremap <silent> <Leader>th <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent> <Leader>tc <C-\><C-n>:FloatermKill<CR>
+nnoremap <silent> <leader>to :FloatermToggle<CR>
+tnoremap <silent> <leader>th <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <leader>tc <C-\><C-n>:FloatermKill<CR>
 
 " vim-gutentags & gutentags_plus
 let $GTAGSLABEL = 'native-pygments'
@@ -337,11 +347,9 @@ let g:Lf_PreviewResult = {
             \ 'Rg': 0,
             \ 'Gtags': 0
             \}
-" gtags
 let g:Lf_GtagsGutentags = 1
 let g:Lf_CacheDirectory = expand('~')
 let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
-" key-map
 let g:Lf_ShortcutF = '<leader>ff'
 noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
@@ -353,3 +361,10 @@ noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buf
 noremap <leader>rg :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
 command Rg execute "Leaderf --stayOpen --bottom rg"
 
+" vim-interestingwords
+let g:interestingWordsDefaultMappings = 0
+nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
+vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
+nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
+nnoremap <silent> n :call WordNavigation(1)<cr>
+nnoremap <silent> N :call WordNavigation(0)<cr>
