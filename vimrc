@@ -3,7 +3,7 @@
 " ==============================================================================
 " <Leader>db    :bd<CR>
 " <Leader>dt    :tabclose<CR>
-" <Leader>ot    :tabnew<CR>
+" <Leader>tn    :tabnew<CR>
 " <Leader>rn    :set relativenumber!<CR> 
 " <Leader>l     <Plug>(easymotion-lineforward)
 " <Leader>j     <Plug>(easymotion-j)
@@ -31,6 +31,9 @@
 " <Leader>ys    :YcmCompleter GoToSymbol<CR>
 " <Leader>yi    :YcmCompleter GoToInclude<CR>
 " <Leader>ye    :YcmDiags<CR>
+" <leader>to    :FloatermToggle<CR>
+" <leader>th    <C-\><C-n>:FloatermToggle<CR>
+" <leader>tc    <C-\><C-n>:FloatermKill<CR>
 " <Leader>fb    :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
 " <Leader>ft    :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
 " <Leader>fl    :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
@@ -142,7 +145,7 @@ nnoremap <C-k> :tabnext<CR>
 
 nnoremap <leader>db :bd<CR>
 nnoremap <leader>dt :tabclose<CR>
-nnoremap <leader>ot :tabnew<CR>
+nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>rn :set relativenumber!<CR>
 
 if has('nvim')
