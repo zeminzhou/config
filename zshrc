@@ -71,7 +71,7 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-FZF_BASE=/root/.vim/plugged/fzf/
+FZF_BASE=~/.vim/plugged/fzf/
 plugins=(
     git
     fzf
@@ -79,9 +79,6 @@ plugins=(
     extract
     z
     cp
-    colored-man-pages
-    git-auto-fetch
-    git-flow
     vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -113,7 +110,7 @@ RPROMPT='%{$fg[green]%}${VIMODE}%{$reset_color%}'
 # fi
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -124,7 +121,6 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-source ~/.proxyrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
