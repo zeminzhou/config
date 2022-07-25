@@ -83,6 +83,7 @@ endif
 Plug 'puremourning/vimspector'
 Plug 'sainnhe/everforest'
 Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/goyo.vim'
 
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
