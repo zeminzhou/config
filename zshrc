@@ -132,3 +132,18 @@ RPROMPT='%{$fg[green]%}${VIMODE}%{$reset_color%}'
 # ta = tmux attach -t
 # ts = tmux new-session -s
 
+alias gba='git branch -a'
+alias gss='git status'
+alias gsh='git stash'
+alias gsp='git stash pop'
+
+alias gch='git checkout'
+alias gcb='git checkout -b'
+alias ga='git add'
+alias gcm='git commit -s -m'
+
+alias gfa='git fetach -a'
+alias gps='git push origin'
+alias gpl='git pull origin'
+alias grb='git rebase'
+
