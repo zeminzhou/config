@@ -75,6 +75,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
 Plug 'junegunn/gv.vim'
+Plug 'benmills/vimux-golang'
+Plug 'preservim/vimux'
 
 if has('nvim')
     Plug 'github/copilot.vim'
@@ -372,3 +374,6 @@ vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
 nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
 nnoremap <silent> n :call WordNavigation(1)<cr>
 nnoremap <silent> N :call WordNavigation(0)<cr>
+
+map <Leader>ra :wa<CR> :GolangTestCurrentPackage<CR>
+map <Leader>rf :wa<CR> :GolangTestFocused<CR>

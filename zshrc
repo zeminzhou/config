@@ -74,7 +74,6 @@ ZSH_THEME="robbyrussell"
 
 FZF_BASE=$HOME/.vim/plugged/fzf/
 plugins=(
-    git
     fzf
     tmux
     extract
@@ -86,6 +85,15 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+export GOPATH=$HOME/go
+export GOROOT=$HOME/.local/go
+export GO11MODULE=auto
+export GOPROXY=https://goproxy.io
+
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/.local/bin:$PATH
 
 # User configuration
 
@@ -121,29 +129,58 @@ RPROMPT='%{$fg[green]%}${VIMODE}%{$reset_color%}'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
-# alias vim='nvim'
-#
 # tmux
 # tl = tmux list-sessions
 # tkss = tmux kill-session -t
 # ta = tmux attach -t
 # ts = tmux new-session -s
 
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fdfind'
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--reverse"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+source $HOME/.myconfig/script/fzf-git.sh
+alias rfv='$HOME/.myconfig/script/rg-fzf.sh'
+
+# git
+alias gaf='git add $(_gf)'
+alias gcf='git checkout $(_gf)'
+alias gcb='git checkout $(_gb)'
+alias gct='git checkout $(_gt)'
+alias gch='git checkout $(_gh)'
+alias gsl='git checkout $(_gs)'
+
 alias gba='git branch -a'
-alias gss='git status'
+alias gs='git status'
 alias gsh='git stash'
 alias gsp='git stash pop'
-
-alias gch='git checkout'
-alias gcb='git checkout -b'
 alias ga='git add'
 alias gcm='git commit -s -m'
-
 alias gfa='git fetch -a'
 alias gps='git push origin'
 alias gpl='git pull origin'
 alias grb='git rebase'
+alias gcl='git clone'
 
+unalias z 2> /dev/null
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m --reverse | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
