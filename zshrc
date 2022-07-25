@@ -142,7 +142,7 @@ alias gcb='git checkout -b'
 alias ga='git add'
 alias gcm='git commit -s -m'
 
-alias gfa='git fetach -a'
+alias gfa='git fetch -a'
 alias gps='git push origin'
 alias gpl='git pull origin'
 alias grb='git rebase'
