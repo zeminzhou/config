@@ -155,6 +155,8 @@ alias gcf='git checkout $(_gf)'
 alias gcb='git checkout $(_gb)'
 alias gct='git checkout $(_gt)'
 alias gch='git checkout $(_gh)'
+alias gdh='git diff $(_gh)'
+alias gdl='git diff $(_gh) $(_gh)'
 alias gsl='git checkout $(_gs)'
 
 alias gba='git branch -a'
@@ -168,6 +170,8 @@ alias gps='git push origin'
 alias gpl='git pull origin'
 alias grb='git rebase'
 alias gcl='git clone'
+
+export FZF_DEFAULT_OPTS='--height=50% --layout=reverse --info=inline --border'
 
 unalias z 2> /dev/null
 z() {
