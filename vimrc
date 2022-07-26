@@ -338,6 +338,7 @@ let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_WindowHeight = 0.3
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_PopupColorscheme = 'gruvbox_default'
 " preview
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewCode = 1
@@ -358,7 +359,7 @@ let g:Lf_CacheDirectory = expand('~')
 let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
 let g:Lf_ShortcutF = '<leader>ff'
 noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf tag %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
 noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
