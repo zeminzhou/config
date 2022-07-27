@@ -296,7 +296,7 @@ tnoremap <silent> <leader>tc <C-\><C-n>:FloatermKill<CR>
 
 " vim-gutentags & gutentags_plus
 let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+let $GTAGSCONF = '~/.globalrc'
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 let g:gutentags_ctags_tagfile = '.tags'
 let g:gutentags_modules = []
