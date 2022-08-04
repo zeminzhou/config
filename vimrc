@@ -52,41 +52,46 @@
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
-Plug 'tabnine/YouCompleteMe'                                                    
-Plug 'altercation/vim-colors-solarized'                                          
-Plug 'fatih/vim-go'
 Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
 Plug 'voldikss/vim-floaterm'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mbbill/undotree'
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'rking/ag.vim'
-Plug 'rust-lang/rust.vim'
 Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+Plug 'tabnine/YouCompleteMe'                                                    
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'fatih/vim-go'
+Plug 'rust-lang/rust.vim'
+Plug 'puremourning/vimspector'
+
+" search
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'rking/ag.vim'
+
+" git
 Plug 'junegunn/gv.vim'
-Plug 'benmills/vimux-golang'
-Plug 'preservim/vimux'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" colorscheme
+Plug 'lighthaus-theme/vim-lighthaus'
+Plug 'sainnhe/everforest'
+Plug 'altercation/vim-colors-solarized'                                          
+Plug 'karoliskoncevicius/sacredforest-vim'
+Plug 'lifepillar/vim-gruvbox8'
 
 if has('nvim')
     Plug 'github/copilot.vim'
 endif
 
-Plug 'puremourning/vimspector'
-Plug 'sainnhe/everforest'
-Plug 'easymotion/vim-easymotion'
-Plug 'junegunn/goyo.vim'
-
+" Plug 'easymotion/vim-easymotion'
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
 " Plug 'dense-analysis/ale'
@@ -135,7 +140,7 @@ set backspace=indent,eol,start
 set ambiwidth=double
 
 syntax enable
-colorscheme gruvbox8_hard
+colorscheme gruvbox8
 
 inoremap jk <esc>
 vnoremap jk <esc>
@@ -215,7 +220,7 @@ let g:airline#extensions#ale#open_lnum_symbol = '(L'
 let g:airline#extensions#ale#close_lnum_symbol = ')'
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
-let g:airline_theme = 'distinguished'
+let g:airline_theme = 'gruvbox8'
 let g:airline_extensions = ['branch', 'tabline']
 
 " YCM 
@@ -347,19 +352,19 @@ let g:Lf_PreviewResult = {
             \ 'Buffer': 0,
             \ 'Mru': 0,
             \ 'Tag': 0,
-            \ 'BufTag': 1,
-            \ 'Function': 1,
+            \ 'BufTag': 0,
+            \ 'Function': 0,
             \ 'Line': 0,
             \ 'Colorscheme': 0,
-            \ 'Rg': 0,
-            \ 'Gtags': 0
+            \ 'Rg': 1,
+            \ 'Gtags': 1
             \}
 let g:Lf_GtagsGutentags = 1
 let g:Lf_CacheDirectory = expand('~')
 let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
 let g:Lf_ShortcutF = '<leader>ff'
 noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf tag %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
 noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
@@ -375,6 +380,3 @@ vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
 nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
 nnoremap <silent> n :call WordNavigation(1)<cr>
 nnoremap <silent> N :call WordNavigation(0)<cr>
-
-map <Leader>ra :wa<CR> :GolangTestCurrentPackage<CR>
-map <Leader>rf :wa<CR> :GolangTestFocused<CR>
