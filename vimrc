@@ -31,9 +31,9 @@
 " <Leader>ys    :YcmCompleter GoToSymbol<CR>
 " <Leader>yi    :YcmCompleter GoToInclude<CR>
 " <Leader>ye    :YcmDiags<CR>
-" <leader>to    :FloatermToggle<CR>
-" <leader>th    <C-\><C-n>:FloatermToggle<CR>
-" <leader>tc    <C-\><C-n>:FloatermKill<CR>
+" <Leader>to    :FloatermToggle<CR>
+" <Leader>th    <C-\><C-n>:FloatermToggle<CR>
+" <Leader>tc    <C-\><C-n>:FloatermKill<CR>
 " <Leader>fb    :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
 " <Leader>ft    :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
 " <Leader>fl    :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
@@ -49,7 +49,7 @@
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
-
+"
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -61,10 +61,11 @@ Plug 'mbbill/undotree'
 Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'machakann/vim-highlightedyank'
 
 Plug 'tabnine/YouCompleteMe'                                                    
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'rust-lang/rust.vim'
 Plug 'puremourning/vimspector'
 
@@ -73,6 +74,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'rking/ag.vim'
+" spell check
+" Plug 'kamykn/spelunker.vim'
 
 " git
 Plug 'junegunn/gv.vim'
@@ -225,6 +228,8 @@ let g:airline_extensions = ['branch', 'tabline']
 
 " YCM 
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_enable_inlay_hints = 0
+let g:ycm_update_diagnostics_in_insert_mode = 1
 let g:ycm_show_detailed_diag_in_popup = 1
 let g:ycm_global_ycm_extra_conf = '/root/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -247,6 +252,12 @@ let g:ycm_language_server =
   \     'cmdline': [ '/root/.local/bin/rust-analyzer' ],
   \     'filetypes': [ 'rust' ],
   \     'project_root_files': [ 'Cargo.toml' ]
+  \   },
+  \   {
+  \     'name': 'go',
+  \     'cmdline': [ '/root/go/bin/gopls' ],
+  \     'filetypes': [ 'go' ],
+  \     'project_root_files': [ 'go.mod' ]
   \   },
   \ ]
 
