@@ -16,15 +16,15 @@
 " <Leader>gv    :GV?<CR>
 " <Leader>hn    :GitGutterNextHunk<CR>
 " <Leader>hp    :GitGutterPrevHunk<CR>
-" <Leader>cd    :GscopeFind g <C-R><C-W><cr>
-" <Leader>cr    :GscopeFind c <C-R><C-W><cr>
-" <Leader>cc    :GscopeFind d <C-R><C-W><cr>
-" <Leader>ca    :GscopeFind a <C-R><C-W><cr>
-" <Leader>ce    :GscopeFind e <C-R><C-W><cr>
-" <Leader>cs    :GscopeFind s <C-R><C-W><cr>
-" <Leader>ct    :GscopeFind t <C-R><C-W><cr>
-" <Leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-" <Leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+" <Leader>cd    :GscopeFind g <C-R><C-W><CR>
+" <Leader>cr    :GscopeFind c <C-R><C-W><CR>
+" <Leader>cc    :GscopeFind d <C-R><C-W><CR>
+" <Leader>ca    :GscopeFind a <C-R><C-W><CR>
+" <Leader>ce    :GscopeFind e <C-R><C-W><CR>
+" <Leader>cs    :GscopeFind s <C-R><C-W><CR>
+" <Leader>ct    :GscopeFind t <C-R><C-W><CR>
+" <Leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
+" <Leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
 " <Leader>yd    :YcmCompleter GoToDefinition<CR>
 " <Leader>yr    :YcmCompleter GoToReferences<CR>
 " <Leader>yc    :YcmCompleter GoToDeclaration<CR>
@@ -43,9 +43,9 @@
 " <Leader>fw    :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
 " <Leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
 " <Leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
-" <Leader>m     :call InterestingWords('n')<cr>
-" <Leader>m     :call InterestingWords('v')<cr>
-" <Leader>M     :call UncolorAllWords()<cr>
+" <Leader>m     :call InterestingWords('n')<CR>
+" <Leader>m     :call InterestingWords('v')<CR>
+" <Leader>M     :call UncolorAllWords()<CR>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -188,6 +188,7 @@ let g:go_fold_enable = []
 
 " rust.vim
 let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
 
 " NERDTree
 nnoremap <leader>nt :NERDTreeMirror<CR>
@@ -238,9 +239,16 @@ let g:ycm_error_symbol = 'xx'
 let g:ycm_warning_symbol = '>>'
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_key_detailed_diagnostics = '<leader>ym'
+let g:ycm_add_preview_to_completeopt = 'popup'
+let g:ycm_enable_semantic_highlighting = 1
+let g:ycm_seed_identifiers_with_syntax=0
+let g:ycm_complete_in_comments=1
+let g:ycm_complete_in_strings=1
+nnoremap <leader>yw <Plug>(YCMFindSymbolInWorkspace)
 nnoremap <silent> <leader>yc :YcmCompleter GoToDeclaration<CR>
 nnoremap <silent> <leader>yd :YcmCompleter GoToDefinition<CR>
-nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol<CR>
+nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol <C-R><C-W><CR>
+nnoremap <silent> <leader>yi :YcmCompleter GoToImplementation<CR>
 nnoremap <silent> <leader>yr :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <leader>yf :YcmCompleter GoToInclude<CR>
 nnoremap <silent> <leader>ye :YcmDiags<CR>
@@ -331,15 +339,15 @@ let g:gutentags_auto_add_gtags_cscope = 0
 set statusline+=%{gutentags#statusline('[',']')}
 let g:gutentags_enabled = 1
 let g:gutentags_plus_nomap = 1
-noremap <silent> <leader>cd :GscopeFind g <C-R><C-W><cr>
-noremap <silent> <leader>cr :GscopeFind c <C-R><C-W><cr>
-noremap <silent> <leader>cc :GscopeFind d <C-R><C-W><cr>
-noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><cr>
-noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><cr>
-noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><cr>
-noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><cr>
-noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <silent> <leader>cd :GscopeFind g <C-R><C-W><CR>
+noremap <silent> <leader>cr :GscopeFind c <C-R><C-W><CR>
+noremap <silent> <leader>cc :GscopeFind d <C-R><C-W><CR>
+noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><CR>
+noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><CR>
+noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><CR>
+noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><CR>
+noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
+noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
 
 set showcmd
 
@@ -386,8 +394,8 @@ command Rg execute "Leaderf --stayOpen --bottom rg"
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
-nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
-vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
-nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
-nnoremap <silent> n :call WordNavigation(1)<cr>
-nnoremap <silent> N :call WordNavigation(0)<cr>
+nnoremap <silent> <leader>m :call InterestingWords('n')<CR>
+vnoremap <silent> <leader>m :call InterestingWords('v')<CR>
+nnoremap <silent> <leader>M :call UncolorAllWords()<CR>
+nnoremap <silent> n :call WordNavigation(1)<CR>
+nnoremap <silent> N :call WordNavigation(0)<CR>
