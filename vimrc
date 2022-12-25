@@ -169,13 +169,13 @@ if has('nvim')
         set undodir=~/.vim/nvim-tmp/undo,.
     endif
 else
-    silent !mkdir -p ~/.vim/tmp/backup
-    silent !mkdir -p ~/.vim/tmp/undo
-    set backupdir=~/.vim/tmp/backup,.
-    set directory=~/.vim/tmp/backup,.
+    silent !mkdir -p ~/.vim/vim-tmp/backup
+    silent !mkdir -p ~/.vim/vim-tmp/undo
+    set backupdir=~/.vim/vim-tmp/backup,.
+    set directory=~/.vim/vim-tmp/backup,.
     if has('persistent_undo')
         set undofile
-        set undodir=~/.vim/tmp/undo,.
+        set undodir=~/.vim/vim-tmp/undo,.
     endif
 endif
 
@@ -216,7 +216,7 @@ let g:airline#extensions#fugitiveline#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#show_splits = 1
-  let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline#extensions#ale#show_line_numbers = 1
