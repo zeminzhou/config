@@ -74,6 +74,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'rking/ag.vim'
+
 " spell check
 " Plug 'kamykn/spelunker.vim'
 
@@ -82,6 +83,8 @@ Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Eliot00/git-lens.vim'
+Plug 'zeminzhou/diffview.vim'
 
 " colorscheme
 Plug 'lighthaus-theme/vim-lighthaus'
@@ -94,7 +97,7 @@ if has('nvim')
     Plug 'github/copilot.vim'
 endif
 
-" Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 " Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 " Plug 'junegunn/fzf.vim'
 " Plug 'dense-analysis/ale'
@@ -269,14 +272,6 @@ let g:ycm_language_server =
   \   },
   \ ]
 
-" markdown-preview
-"let g:mkdp_path_to_chrome = "chrome"
-let g:mkdp_open_to_the_world = 0    
-nnoremap <F8> :MarkdownPreview<CR>
-inoremap <F8> <ESC>:MarkdownPreview<CR>i
-nnoremap <F9> :MarkdownPreviewStop<CR>
-inoremap <F9> <ESC>:MarkdownPreviewStop<CR>i
-
 " easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
@@ -359,7 +354,7 @@ let g:Lf_UseCache = 1
 let g:Lf_ShowHidden = 1
 let g:Lf_UseVersionControlTool = 1
 let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_WindowHeight = 0.3
+let g:Lf_WindowHeight = 0.4
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_StlColorscheme = 'gruvbox_material'
 let g:Lf_PopupColorscheme = 'gruvbox_default'
@@ -382,7 +377,7 @@ let g:Lf_GtagsGutentags = 1
 let g:Lf_CacheDirectory = expand('~')
 let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
 let g:Lf_ShortcutF = '<leader>ff'
-noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+let g:Lf_ShortcutB = '<leader>fb'
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
@@ -399,3 +394,7 @@ vnoremap <silent> <leader>m :call InterestingWords('v')<CR>
 nnoremap <silent> <leader>M :call UncolorAllWords()<CR>
 nnoremap <silent> n :call WordNavigation(1)<CR>
 nnoremap <silent> N :call WordNavigation(0)<CR>
+
+nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
+
+nnoremap <silent> <leader>vt :call ToggleDiffView()<CR>
