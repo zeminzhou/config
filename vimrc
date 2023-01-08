@@ -73,6 +73,7 @@ Plug 'puremourning/vimspector'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'linjiX/LeaderF-git'
 Plug 'rking/ag.vim'
 
 " spell check
@@ -396,5 +397,4 @@ nnoremap <silent> n :call WordNavigation(1)<CR>
 nnoremap <silent> N :call WordNavigation(0)<CR>
 
 nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
-
 nnoremap <silent> <leader>vt :call ToggleDiffView()<CR>
