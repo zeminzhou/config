@@ -158,7 +158,6 @@ alias gch='git checkout $(_gh)'
 alias gdbh='git diff $(_gb)'
 alias gdh='git diff $(_gh)'
 alias gdh2='git diff $(_gh) $(_gh)'
-alias gsl='git checkout $(_gs)'
 alias grf='git restore --staged $(_gf)'
 
 alias gnb='git checkout $(_gb) -b'
