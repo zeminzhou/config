@@ -163,7 +163,7 @@ alias grf='git restore --staged $(_gf)'
 
 alias gnb='git checkout $(_gb) -b'
 alias gba='git branch -a'
-alias grb='git branch -d $(_gb)'
+alias grb='git branch -D $(_gb)'
 alias gs='git status'
 alias gsh='git stash'
 alias gsp='git stash pop'
