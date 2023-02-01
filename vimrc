@@ -62,6 +62,7 @@ Plug 'lfv89/vim-interestingwords'
 Plug 'itchyny/vim-cursorword'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'machakann/vim-highlightedyank'
+Plug 'junegunn/seoul256.vim'
 
 Plug 'tabnine/YouCompleteMe'                                                    
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
@@ -147,7 +148,8 @@ set backspace=indent,eol,start
 set ambiwidth=double
 
 syntax enable
-colorscheme gruvbox8
+" colorscheme gruvbox8
+colorscheme seoul256
 
 inoremap jk <esc>
 vnoremap jk <esc>
