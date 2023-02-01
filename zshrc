@@ -74,6 +74,7 @@ ZSH_THEME="robbyrussell"
 
 FZF_BASE=$HOME/.vim/plugged/fzf/
 plugins=(
+    kubectl
     fzf
     tmux
     extract
