@@ -71,8 +71,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'puremourning/vimspector'
 
 " search
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'linjiX/LeaderF-git'
 Plug 'rking/ag.vim'
@@ -86,12 +84,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" vim9
-if has('patch-9.0.1151')
-    Plug 'Eliot00/git-lens.vim'
-    Plug 'zeminzhou/diffview.vim'
-endif
-
 " colorscheme
 Plug 'lighthaus-theme/vim-lighthaus'
 Plug 'sainnhe/everforest'
@@ -101,6 +93,12 @@ Plug 'lifepillar/vim-gruvbox8'
 
 if has('nvim')
     Plug 'github/copilot.vim'
+else
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
+    " vim9 plug
+    Plug 'Eliot00/git-lens.vim'
+    Plug 'zeminzhou/diffview.vim'
 endif
 
 Plug 'easymotion/vim-easymotion'
