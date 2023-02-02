@@ -85,8 +85,12 @@ Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Eliot00/git-lens.vim'
-Plug 'zeminzhou/diffview.vim'
+
+" vim9
+if has('patch-9.0.1151')
+    Plug 'Eliot00/git-lens.vim'
+    Plug 'zeminzhou/diffview.vim'
+endif
 
 " colorscheme
 Plug 'lighthaus-theme/vim-lighthaus'
