@@ -133,6 +133,7 @@ set smartcase
 set autowrite
 set nocompatible
 set relativenumber
+set wildmenu
 
 set cmdheight=2
 set tabstop=4
