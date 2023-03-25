@@ -350,13 +350,14 @@ command! -bang -nargs=? -complete=dir Files
     \ {'options': ['--layout=reverse', '--info=inline', '--preview',
     \ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
     \ <bang>0)
-noremap <silent> <leader>ff :Files<CR>
-noremap <silent> <leader>fg :GFiles?<CR>
-noremap <silent> <leader>fb :Buffers<CR>
-noremap <silent> <leader>fc :Commands<CR>
-noremap <silent> <leader>fh :History:<CR>
-noremap <silent> <leader>fm :Maps<CR>
-
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fg :GFiles?<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>fl :Lines<CR>
+nnoremap <silent> <leader>fc :Commands<CR>
+nnoremap <silent> <leader>fh :History:<CR>
+nnoremap <silent> <leader>fm :Maps<CR>
+nnoremap <silent> <leader>fw :Rg <c-r><c-w><cr>
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
