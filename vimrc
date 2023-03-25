@@ -29,20 +29,12 @@
 " <Leader>yr    :YcmCompleter GoToReferences<CR>
 " <Leader>yc    :YcmCompleter GoToDeclaration<CR>
 " <Leader>ys    :YcmCompleter GoToSymbol<CR>
-" <Leader>yi    :YcmCompleter GoToInclude<CR>
+" <Leader>yi    :YcmCompleter GoToImplementation<CR>
+" <Leader>yf    :YcmCompleter GoToInclude<CR>
 " <Leader>ye    :YcmDiags<CR>
 " <Leader>to    :FloatermToggle<CR>
 " <Leader>th    <C-\><C-n>:FloatermToggle<CR>
 " <Leader>tc    <C-\><C-n>:FloatermKill<CR>
-" <Leader>fb    :<C-U><C-R>=printf("Leaderf buffer %s", \"")<CR><CR>
-" <Leader>ft    :<C-U><C-R>=printf("Leaderf bufTag %s", \"")<CR><CR>
-" <Leader>fl    :<C-U><C-R>=printf("Leaderf line %s", \"")<CR><CR>
-" <Leader>fc    :<C-U><C-R>=printf("Leaderf command %s", \"")<CR><CR>
-" <Leader>fs    :<C-U><C-R>=printf("Leaderf searchHistory %s", \"")<CR><CR>
-" <Leader>fh    :<C-U><C-R>=printf("Leaderf cmdHistory %s", \"")<CR><CR>
-" <Leader>fw    :<C-U><C-R>=printf("Leaderf! --stayOpen rg -e %s","")<CR>
-" <Leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
-" <Leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
 " <Leader>m     :call InterestingWords('n')<CR>
 " <Leader>m     :call InterestingWords('v')<CR>
 " <Leader>M     :call UncolorAllWords()<CR>
@@ -71,9 +63,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'puremourning/vimspector'
 
 " search
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'linjiX/LeaderF-git'
-Plug 'rking/ag.vim'
+Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
 
 " spell check
 " Plug 'kamykn/spelunker.vim'
@@ -102,8 +93,6 @@ else
 endif
 
 Plug 'easymotion/vim-easymotion'
-" Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
-" Plug 'junegunn/fzf.vim'
 " Plug 'dense-analysis/ale'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
@@ -114,6 +103,9 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'brooth/far.vim'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'jpalardy/vim-slime'
+" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+" Plug 'linjiX/LeaderF-git'
+" Plug 'rking/ag.vim'
 call plug#end()
 
 let mapleader = ","
@@ -352,46 +344,16 @@ noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
 
 set showcmd
 
-" leaderF
-let g:Lf_ShowDevIcons = 0
-let g:Lf_StlSeparator = { 'left': '>', 'right': '<' }
-let g:Lf_HideHelp = 0
-let g:Lf_UseCache = 1
-let g:Lf_ShowHidden = 1
-let g:Lf_UseVersionControlTool = 1
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_WindowHeight = 0.4
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_StlColorscheme = 'gruvbox_material'
-let g:Lf_PopupColorscheme = 'gruvbox_default'
-" preview
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PreviewCode = 1
-let g:Lf_PreviewResult = {
-            \ 'File': 0,
-            \ 'Buffer': 0,
-            \ 'Mru': 0,
-            \ 'Tag': 0,
-            \ 'BufTag': 0,
-            \ 'Function': 0,
-            \ 'Line': 0,
-            \ 'Colorscheme': 0,
-            \ 'Rg': 1,
-            \ 'Gtags': 1
-            \}
-let g:Lf_GtagsGutentags = 1
-let g:Lf_CacheDirectory = expand('~')
-let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
-let g:Lf_ShortcutF = '<leader>ff'
-let g:Lf_ShortcutB = '<leader>fb'
-noremap <leader>ft :<C-U><C-R>=printf("Leaderf gtags %s", "")<CR><CR>
-noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
-noremap <leader>fc :<C-U><C-R>=printf("Leaderf command %s", "")<CR><CR>
-noremap <leader>fs :<C-U><C-R>=printf("Leaderf searchHistory %s", "")<CR><CR>
-noremap <leader>fh :<C-U><C-R>=printf("Leaderf cmdHistory %s", "")<CR><CR>
-noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
-noremap <leader>rg :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
-command Rg execute "Leaderf --stayOpen --bottom rg"
+" FZF
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {} 2> /dev/null || tree -C {} 2> /dev/null']}, <bang>0)
+noremap <silent> <leader>ff :Files<CR>
+noremap <silent> <leader>fg :GFiles?<CR>
+noremap <silent> <leader>fb :Buffers<CR>
+noremap <silent> <leader>fc :Commands<CR>
+noremap <silent> <leader>fh :History:<CR>
+noremap <silent> <leader>fm :Maps<CR>
+
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
