@@ -173,7 +173,7 @@ alias gfa='git fetch --all'
 alias gpso='git push origin'
 alias gplo='git pull origin'
 alias gpsz='git push zzm'
-alias gplz='git pull zmm'
+alias gplz='git pull zzm'
 # alias grb='git rebase'
 alias gcl='git clone'
 
