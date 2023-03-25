@@ -346,7 +346,10 @@ set showcmd
 
 " FZF
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {} 2> /dev/null || tree -C {} 2> /dev/null']}, <bang>0)
+    \ call fzf#vim#files(<q-args>,
+    \ {'options': ['--layout=reverse', '--info=inline', '--preview',
+    \ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
+    \ <bang>0)
 noremap <silent> <leader>ff :Files<CR>
 noremap <silent> <leader>fg :GFiles?<CR>
 noremap <silent> <leader>fb :Buffers<CR>
