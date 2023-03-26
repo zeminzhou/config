@@ -332,15 +332,15 @@ let g:gutentags_auto_add_gtags_cscope = 0
 set statusline+=%{gutentags#statusline('[',']')}
 let g:gutentags_enabled = 1
 let g:gutentags_plus_nomap = 1
-noremap <silent> <leader>cd :GscopeFind g <C-R><C-W><CR>
-noremap <silent> <leader>cr :GscopeFind c <C-R><C-W><CR>
-noremap <silent> <leader>cc :GscopeFind d <C-R><C-W><CR>
-noremap <silent> <leader>ca :GscopeFind a <C-R><C-W><CR>
-noremap <silent> <leader>ce :GscopeFind e <C-R><C-W><CR>
-noremap <silent> <leader>cs :GscopeFind s <C-R><C-W><CR>
-noremap <silent> <leader>ct :GscopeFind t <C-R><C-W><CR>
-noremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
-noremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>cd :GscopeFind g <C-R><C-W><CR>
+nnoremap <silent> <leader>cr :GscopeFind c <C-R><C-W><CR>
+nnoremap <silent> <leader>cc :GscopeFind d <C-R><C-W><CR>
+nnoremap <silent> <leader>ca :GscopeFind a <C-R><C-W><CR>
+nnoremap <silent> <leader>ce :GscopeFind e <C-R><C-W><CR>
+nnoremap <silent> <leader>cs :GscopeFind s <C-R><C-W><CR>
+nnoremap <silent> <leader>ct :GscopeFind t <C-R><C-W><CR>
+nnoremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
 
 set showcmd
 
