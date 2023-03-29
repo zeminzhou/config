@@ -81,9 +81,10 @@ Plug 'sainnhe/everforest'
 Plug 'altercation/vim-colors-solarized'                                          
 Plug 'karoliskoncevicius/sacredforest-vim'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'github/copilot.vim'
 
 if has('nvim')
-    Plug 'github/copilot.vim'
+
 else
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'skywind3000/gutentags_plus'
