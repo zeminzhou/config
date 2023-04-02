@@ -32,6 +32,7 @@
 " <Leader>ys    :YcmCompleter GoToSymbol<CR>
 " <Leader>yi    :YcmCompleter GoToImplementation<CR>
 " <Leader>yf    :YcmCompleter GoToInclude<CR>
+" <Leader>yt    :YcmCompleter GoToType<CR>
 " <Leader>ye    :YcmDiags<CR>
 " <Leader>to    :FloatermToggle<CR>
 " <Leader>th    <C-\><C-n>:FloatermToggle<CR>
@@ -255,8 +256,8 @@ nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol <C-R><C-W><CR>
 nnoremap <silent> <leader>yi :YcmCompleter GoToImplementation<CR>
 nnoremap <silent> <leader>yr :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <leader>yf :YcmCompleter GoToInclude<CR>
+nnoremap <silent> <leader>yt :YcmCompleter GoToType<CR>
 nnoremap <silent> <leader>ye :YcmDiags<CR>
-nnoremap <silent> <leader>yt :let g:ycm_auto_trigger = g:ycm_auto_trigger == 1 ? 0 : 1<CR>
 let g:ycm_language_server =
   \ [
   \   {
