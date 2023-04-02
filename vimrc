@@ -26,8 +26,9 @@
 " <Leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
 " <Leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
 " <Leader>yd    :YcmCompleter GoToDefinition<CR>
+" <Leader>yo    :YcmCompleter GoToDocumentOutline<CR>
 " <Leader>yr    :YcmCompleter GoToReferences<CR>
-" <Leader>yc    :YcmCompleter GoToDeclaration<CR>
+" <Leader>yc    :YcmCompleter GoToCallers<CR>
 " <Leader>ys    :YcmCompleter GoToSymbol<CR>
 " <Leader>yi    :YcmCompleter GoToImplementation<CR>
 " <Leader>yf    :YcmCompleter GoToInclude<CR>
@@ -247,7 +248,8 @@ let g:ycm_seed_identifiers_with_syntax=0
 let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
 nnoremap <leader>yw <Plug>(YCMFindSymbolInWorkspace)
-nnoremap <silent> <leader>yc :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> <leader>yc :YcmCompleter GoToCallers<CR>
+nnoremap <silent> <Leader>yo :YcmCompleter GoToDocumentOutline<CR>
 nnoremap <silent> <leader>yd :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> <leader>ys :YcmCompleter GoToSymbol <C-R><C-W><CR>
 nnoremap <silent> <leader>yi :YcmCompleter GoToImplementation<CR>
