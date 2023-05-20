@@ -37,6 +37,8 @@
 " <Leader>to    :FloatermToggle<CR>
 " <Leader>th    <C-\><C-n>:FloatermToggle<CR>
 " <Leader>tc    <C-\><C-n>:FloatermKill<CR>
+" <Leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
+" <Leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
 " <Leader>m     :call InterestingWords('n')<CR>
 " <Leader>m     :call InterestingWords('v')<CR>
 " <Leader>M     :call UncolorAllWords()<CR>
@@ -67,6 +69,8 @@ Plug 'puremourning/vimspector'
 " search
 Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'rking/ag.vim'
 
 " spell check
 " Plug 'kamykn/spelunker.vim'
@@ -212,8 +216,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enable = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#fzf#enabled = 1
 let g:airline#extensions#fugitiveline#enabled = 1
@@ -221,15 +225,9 @@ let g:airline#extensions#ycm#enabled = 1
 let g:airline#extensions#tabline#ctrlspace_show_tab_nr = 0
 let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#error_symbol = 'E:'
-let g:airline#extensions#ale#warning_symbol = 'W:'
-let g:airline#extensions#ale#show_line_numbers = 1
-let g:airline#extensions#ale#open_lnum_symbol = '(L'
-let g:airline#extensions#ale#close_lnum_symbol = ')'
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
 let g:airline_theme = 'gruvbox8'
-let g:airline_extensions = ['branch', 'tabline']
 
 " YCM 
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -362,6 +360,40 @@ nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 nnoremap <silent> <leader>fw :Rg <c-r><c-w><cr>
+
+" leaderF
+let g:Lf_ShowDevIcons = 0
+let g:Lf_StlSeparator = { 'left': '>', 'right': '<' }
+let g:Lf_HideHelp = 0
+let g:Lf_UseCache = 1
+let g:Lf_ShowHidden = 1
+let g:Lf_UseVersionControlTool = 1
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_WindowHeight = 0.3
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_PopupColorscheme = 'gruvbox_default'
+" preview
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewCode = 1
+let g:Lf_PreviewResult = {
+            \ 'File': 0,
+            \ 'Buffer': 0,
+            \ 'Mru': 0,
+            \ 'Tag': 1,
+            \ 'BufTag': 0,
+            \ 'Function': 1,
+            \ 'Line': 0,
+            \ 'Colorscheme': 0,
+            \ 'Rg': 0,
+            \ 'Gtags': 1
+            \}
+let g:Lf_GtagsGutentags = 1
+let g:Lf_CacheDirectory = expand('~')
+let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
+noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
+noremap <leader>rg :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
+command Rg execute "Leaderf --stayOpen --bottom rg"
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0

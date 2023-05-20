@@ -172,6 +172,8 @@ alias gcm='git commit -s -m'
 alias gfa='git fetch --all'
 alias gpso='git push origin'
 alias gplo='git pull origin'
+alias gpsz='git push zzm'
+alias gplz='git pull zzm'
 # alias grb='git rebase'
 alias gcl='git clone'
 
@@ -192,6 +194,7 @@ fkill() {
     echo $pid | xargs kill -${1:-9}
   fi
 }
+
 
 bindkey '^E' end-of-line
 
