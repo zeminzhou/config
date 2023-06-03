@@ -359,9 +359,10 @@ nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
-nnoremap <silent> <leader>fw :Rg <c-r><c-w><cr>
 
 " leaderF
+let g:Lf_ShortcutF = '<leader>lff'
+let g:Lf_ShortcutB = '<leader>lfb'
 let g:Lf_ShowDevIcons = 0
 let g:Lf_StlSeparator = { 'left': '>', 'right': '<' }
 let g:Lf_HideHelp = 0
