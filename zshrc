@@ -75,6 +75,7 @@ ZSH_THEME="robbyrussell"
 FZF_BASE=$HOME/.vim/plugged/fzf/
 plugins=(
     kubectl
+    kubectx
     fzf
     tmux
     extract
@@ -83,6 +84,7 @@ plugins=(
     vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-kubectl-prompt
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,15 +104,6 @@ export PATH=$HOME/.local/bin:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-VIMODE='-*-'
-function zle-line-init zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/*-*}/(main|viins)/-*-}"
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-RPROMPT='%{$fg[green]%}${VIMODE}%{$reset_color%}'
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -198,3 +191,12 @@ fkill() {
 
 bindkey '^E' end-of-line
 
+MY_PROMPT=$(echo $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $2}')
+function zle-line-init zle-keymap-select {
+    ZSH_KUBECTL_SHORT=$(echo $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $2}')
+    MY_PROMPT="${${KEYMAP/vicmd/vi-normal}/(main|viins)/$ZSH_KUBECTL_SHORT}"
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+RPROMPT='%{$fg[green]%}[$MY_PROMPT]%{$reset_color%}'
