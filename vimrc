@@ -322,6 +322,7 @@ nnoremap <silent> <leader>fl :Lines<CR>
 nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
+nnoremap <silent> <leader>ft :Tags<CR>
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
