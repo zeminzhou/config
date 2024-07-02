@@ -4,6 +4,7 @@
 " <Leader>db    :bd<CR>
 " <Leader>rn    :set relativenumber!<CR> 
 " <Leader>nu    :set number!<CR> 
+" <Leader>pt    :set paste!<CR> 
 " <Leader>ll    <Plug>(easymotion-lineforward)
 " <Leader>jj    <Plug>(easymotion-j)
 " <Leader>kk    <Plug>(easymotion-k)
@@ -33,6 +34,7 @@
 " <Leader>mm    :call InterestingWords('v')<CR>
 " <Leader>M     :call UncolorAllWords()<CR>
 " <Leader>lt    :call ToggleGitLens()<CR>
+" <Leader>fw    :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -127,7 +129,7 @@ set nocompatible
 set relativenumber
 set wildmenu
 
-set cmdheight=2
+set cmdheight=1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -155,6 +157,7 @@ nnoremap <C-l> :bn<CR>
 nnoremap <leader>db :bd<CR>
 nnoremap <leader>rn :set relativenumber!<CR>
 nnoremap <leader>nu :set number!<CR>
+nnoremap <leader>pt :set paste!<CR> 
 
 if has('nvim')
     silent !mkdir -p ~/.vim/nvim-tmp/backup
@@ -192,17 +195,17 @@ let g:rustfmt_fail_silently = 1
 nnoremap <leader>nt :NERDTreeMirror<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-            \ 'Modified'  :'~',
-            \ 'Staged'    :'+',
-            \ 'Untracked' :'*',
-            \ 'Renamed'   :'^',
-            \ 'Unmerged'  :'=',
-            \ 'Deleted'   :'-',
-            \ 'Dirty'     :'>',
-            \ 'Ignored'   :'#',
-            \ 'Clean'     :'c',
-            \ 'Unknown'   :'?',
-            \ }
+\ 'Modified'  :'~',
+\ 'Staged'    :'+',
+\ 'Untracked' :'*',
+\ 'Renamed'   :'^',
+\ 'Unmerged'  :'=',
+\ 'Deleted'   :'-',
+\ 'Dirty'     :'>',
+\ 'Ignored'   :'#',
+\ 'Clean'     :'c',
+\ 'Unknown'   :'?',
+\ }
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -328,5 +331,8 @@ nnoremap <silent> <leader>M :call UncolorAllWords()<CR>
 nnoremap <silent> n :call WordNavigation(1)<CR>
 nnoremap <silent> N :call WordNavigation(0)<CR>
 
+" git-lens
 nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
 
+" ag.vim
+nnoremap <leader>fw :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
