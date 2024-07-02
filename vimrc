@@ -1,14 +1,13 @@
 " ==============================================================================
-" ==============================================================================
+" ================================ KEY MAP =====================================
 " ==============================================================================
 " <Leader>db    :bd<CR>
-" <Leader>dt    :tabclose<CR>
-" <Leader>tn    :tabnew<CR>
 " <Leader>rn    :set relativenumber!<CR> 
-" <Leader>l     <Plug>(easymotion-lineforward)
-" <Leader>j     <Plug>(easymotion-j)
-" <Leader>k     <Plug>(easymotion-k)
-" <Leader>h     <Plug>(easymotion-linebackward)
+" <Leader>nu    :set number!<CR> 
+" <Leader>ll    <Plug>(easymotion-lineforward)
+" <Leader>jj    <Plug>(easymotion-j)
+" <Leader>kk    <Plug>(easymotion-k)
+" <Leader>hh    <Plug>(easymotion-linebackward)
 " <Leader>tt    :TagbarToggle<CR>
 " <Leader>ut    :UndotreeToggle<CR> 
 " <Leader>gd    :Gdiffsplit<CR>
@@ -16,15 +15,8 @@
 " <Leader>gv    :GV?<CR>
 " <Leader>hn    :GitGutterNextHunk<CR>
 " <Leader>hp    :GitGutterPrevHunk<CR>
-" <Leader>cd    :GscopeFind g <C-R><C-W><CR>
-" <Leader>cr    :GscopeFind c <C-R><C-W><CR>
-" <Leader>cc    :GscopeFind d <C-R><C-W><CR>
-" <Leader>ca    :GscopeFind a <C-R><C-W><CR>
-" <Leader>ce    :GscopeFind e <C-R><C-W><CR>
-" <Leader>cs    :GscopeFind s <C-R><C-W><CR>
-" <Leader>ct    :GscopeFind t <C-R><C-W><CR>
-" <Leader>cf    :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
-" <Leader>ci    :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
+" <Leader>yw    <Plug>(YCMFindSymbolInWorkspace)
+" <Leader>yh    <Plug>(YCMCallHierarchy)
 " <Leader>yd    :YcmCompleter GoToDefinition<CR>
 " <Leader>yo    :YcmCompleter GoToDocumentOutline<CR>
 " <Leader>yr    :YcmCompleter GoToReferences<CR>
@@ -37,11 +29,10 @@
 " <Leader>to    :FloatermToggle<CR>
 " <Leader>th    <C-\><C-n>:FloatermToggle<CR>
 " <Leader>tc    <C-\><C-n>:FloatermKill<CR>
-" <Leader>fw    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
-" <Leader>rg    :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
-" <Leader>m     :call InterestingWords('n')<CR>
-" <Leader>m     :call InterestingWords('v')<CR>
+" <Leader>mm    :call InterestingWords('n')<CR>
+" <Leader>mm    :call InterestingWords('v')<CR>
 " <Leader>M     :call UncolorAllWords()<CR>
+" <Leader>lt    :call ToggleGitLens()<CR>
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -64,12 +55,12 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'rust-lang/rust.vim'
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 
 " search
 Plug 'junegunn/fzf', {'do' : { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'rking/ag.vim'
 
 " spell check
@@ -79,6 +70,7 @@ Plug 'rking/ag.vim'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " colorscheme
@@ -87,20 +79,22 @@ Plug 'sainnhe/everforest'
 Plug 'altercation/vim-colors-solarized'                                          
 Plug 'karoliskoncevicius/sacredforest-vim'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'github/copilot.vim'
+Plug 'chriskempson/base16-vim'
+"Plug 'github/copilot.vim'
 
 if has('nvim')
 
 else
-    Plug 'ludovicchabant/vim-gutentags'
-    Plug 'skywind3000/gutentags_plus'
+    " Plug 'ludovicchabant/vim-gutentags'
+    " Plug 'skywind3000/gutentags_plus'
     " vim9 plug
+    " Plug 'zeminzhou/diffview.vim'
     Plug 'Eliot00/git-lens.vim'
-    Plug 'zeminzhou/diffview.vim'
 endif
 
 Plug 'easymotion/vim-easymotion'
 " Plug 'dense-analysis/ale'
+" Plug 'prabirshrestha/vim-lsp'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 " Plug 'nathanaelkane/vim-indent-guides'
@@ -110,7 +104,6 @@ Plug 'easymotion/vim-easymotion'
 " Plug 'brooth/far.vim'
 " Plug 'davidhalter/jedi-vim'
 " Plug 'jpalardy/vim-slime'
-" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 " Plug 'linjiX/LeaderF-git'
 " Plug 'rking/ag.vim'
 call plug#end()
@@ -150,7 +143,6 @@ set backspace=indent,eol,start
 set ambiwidth=double
 
 syntax enable
-" colorscheme gruvbox8
 colorscheme seoul256
 
 inoremap jk <esc>
@@ -159,13 +151,10 @@ vnoremap jk <esc>
 vnoremap Y "+y
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
-nnoremap <C-j> :tabprevious<CR>
-nnoremap <C-k> :tabnext<CR>
 
 nnoremap <leader>db :bd<CR>
-nnoremap <leader>dt :tabclose<CR>
-nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>rn :set relativenumber!<CR>
+nnoremap <leader>nu :set number!<CR>
 
 if has('nvim')
     silent !mkdir -p ~/.vim/nvim-tmp/backup
@@ -192,6 +181,7 @@ let g:startify_change_to_dir = 0
 
 " vim-go
 let g:go_gopls_enabled = 0
+let g:go_imports_autosave = 0
 let g:go_fold_enable = []
 
 " rust.vim
@@ -202,17 +192,17 @@ let g:rustfmt_fail_silently = 1
 nnoremap <leader>nt :NERDTreeMirror<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'~',
-                \ 'Staged'    :'+',
-                \ 'Untracked' :'*',
-                \ 'Renamed'   :'^',
-                \ 'Unmerged'  :'=',
-                \ 'Deleted'   :'-',
-                \ 'Dirty'     :'>',
-                \ 'Ignored'   :'#',
-                \ 'Clean'     :'c',
-                \ 'Unknown'   :'?',
-                \ }
+            \ 'Modified'  :'~',
+            \ 'Staged'    :'+',
+            \ 'Untracked' :'*',
+            \ 'Renamed'   :'^',
+            \ 'Unmerged'  :'=',
+            \ 'Deleted'   :'-',
+            \ 'Dirty'     :'>',
+            \ 'Ignored'   :'#',
+            \ 'Clean'     :'c',
+            \ 'Unknown'   :'?',
+            \ }
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -227,7 +217,7 @@ let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '>'
 let g:airline_right_sep = '<'
-let g:airline_theme = 'gruvbox8'
+let g:airline_theme = 'distinguished'
 
 " YCM 
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -247,6 +237,7 @@ let g:ycm_seed_identifiers_with_syntax=0
 let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
 nnoremap <leader>yw <Plug>(YCMFindSymbolInWorkspace)
+nnoremap <leader>yh <Plug>(YCMCallHierarchy)
 nnoremap <silent> <leader>yc :YcmCompleter GoToCallers<CR>
 nnoremap <silent> <Leader>yo :YcmCompleter GoToDocumentOutline<CR>
 nnoremap <silent> <leader>yd :YcmCompleter GoToDefinition<CR>
@@ -257,28 +248,28 @@ nnoremap <silent> <leader>yf :YcmCompleter GoToInclude<CR>
 nnoremap <silent> <leader>yt :YcmCompleter GoToType<CR>
 nnoremap <silent> <leader>ye :YcmDiags<CR>
 let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'rust',
-  \     'cmdline': [ '/root/.local/bin/rust-analyzer' ],
-  \     'filetypes': [ 'rust' ],
-  \     'project_root_files': [ 'Cargo.toml' ]
-  \   },
-  \   {
-  \     'name': 'go',
-  \     'cmdline': [ '/root/go/bin/gopls' ],
-  \     'filetypes': [ 'go' ],
-  \     'project_root_files': [ 'go.mod' ]
-  \   },
-  \ ]
+\ [
+\   {
+\     'name': 'rust',
+\     'cmdline': [ '/root/.local/bin/rust-analyzer' ],
+\     'filetypes': [ 'rust' ],
+\     'project_root_files': [ 'Cargo.toml' ]
+\   },
+\   {
+\     'name': 'go',
+\     'cmdline': [ '/root/go/bin/gopls' ],
+\     'filetypes': [ 'go' ],
+\     'project_root_files': [ 'go.mod' ]
+\   },
+\ ]
 
 " easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-nnoremap <leader>l <Plug>(easymotion-lineforward)
-nnoremap <leader>j <Plug>(easymotion-j)
-nnoremap <leader>k <Plug>(easymotion-k)
-nnoremap <leader>h <Plug>(easymotion-linebackward)
+nnoremap <leader>ll <Plug>(easymotion-lineforward)
+nnoremap <leader>jj <Plug>(easymotion-j)
+nnoremap <leader>kk <Plug>(easymotion-k)
+nnoremap <leader>hh <Plug>(easymotion-linebackward)
 
 " tagbar
 nnoremap <leader>tt :TagbarToggle<CR>
@@ -313,45 +304,14 @@ nnoremap <silent> <leader>to :FloatermToggle<CR>
 tnoremap <silent> <leader>th <C-\><C-n>:FloatermToggle<CR>
 tnoremap <silent> <leader>tc <C-\><C-n>:FloatermKill<CR>
 
-" vim-gutentags & gutentags_plus
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/root/.globalrc'
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_modules = []
-if executable('ctags')
-    let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-    let g:gutentags_modules += ['gtags_cscope']
-endif
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_define_advanced_commands = 1
-let g:gutentags_auto_add_gtags_cscope = 0
-set statusline+=%{gutentags#statusline('[',']')}
-let g:gutentags_enabled = 1
-let g:gutentags_plus_nomap = 1
-nnoremap <silent> <leader>cd :GscopeFind g <C-R><C-W><CR>
-nnoremap <silent> <leader>cr :GscopeFind c <C-R><C-W><CR>
-nnoremap <silent> <leader>cc :GscopeFind d <C-R><C-W><CR>
-nnoremap <silent> <leader>ca :GscopeFind a <C-R><C-W><CR>
-nnoremap <silent> <leader>ce :GscopeFind e <C-R><C-W><CR>
-nnoremap <silent> <leader>cs :GscopeFind s <C-R><C-W><CR>
-nnoremap <silent> <leader>ct :GscopeFind t <C-R><C-W><CR>
-nnoremap <silent> <leader>cf :GscopeFind f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <silent> <leader>ci :GscopeFind i <C-R>=expand("<cfile>")<CR><CR>
-
 set showcmd
 
 " FZF
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>,
-    \ {'options': ['--layout=reverse', '--info=inline', '--preview',
-    \ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
-    \ <bang>0)
+\ call fzf#vim#files(<q-args>,
+\ {'options': ['--layout=reverse', '--info=inline', '--preview',
+\ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
+\ <bang>0)
 nnoremap <silent> <leader>ff :Files<CR>
 nnoremap <silent> <leader>fg :GFiles?<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
@@ -360,49 +320,13 @@ nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 
-" leaderF
-let g:Lf_ShortcutF = '<leader>lff'
-let g:Lf_ShortcutB = '<leader>lfb'
-let g:Lf_ShowDevIcons = 0
-let g:Lf_StlSeparator = { 'left': '>', 'right': '<' }
-let g:Lf_HideHelp = 0
-let g:Lf_UseCache = 1
-let g:Lf_ShowHidden = 1
-let g:Lf_UseVersionControlTool = 1
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_WindowHeight = 0.3
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_StlColorscheme = 'gruvbox_material'
-let g:Lf_PopupColorscheme = 'gruvbox_default'
-" preview
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PreviewCode = 1
-let g:Lf_PreviewResult = {
-            \ 'File': 0,
-            \ 'Buffer': 0,
-            \ 'Mru': 0,
-            \ 'Tag': 1,
-            \ 'BufTag': 0,
-            \ 'Function': 1,
-            \ 'Line': 0,
-            \ 'Colorscheme': 0,
-            \ 'Rg': 0,
-            \ 'Gtags': 1
-            \}
-let g:Lf_GtagsGutentags = 1
-let g:Lf_CacheDirectory = expand('~')
-let g:gutentags_cache_dir = expand(g:Lf_CacheDirectory.'/.LfCache/gtags')
-noremap <leader>fw :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --current-buffer --bottom --stayOpen", expand("<cword>"))<CR><CR>
-noremap <leader>rg :<C-U><C-R>=printf("Leaderf! rg --heading -e %s --bottom --stayOpen", expand("<cword>"))<CR><CR>
-command Rg execute "Leaderf --stayOpen --bottom rg"
-
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
-nnoremap <silent> <leader>m :call InterestingWords('n')<CR>
-vnoremap <silent> <leader>m :call InterestingWords('v')<CR>
+nnoremap <silent> <leader>mm :call InterestingWords('n')<CR>
+vnoremap <silent> <leader>mm :call InterestingWords('v')<CR>
 nnoremap <silent> <leader>M :call UncolorAllWords()<CR>
 nnoremap <silent> n :call WordNavigation(1)<CR>
 nnoremap <silent> N :call WordNavigation(0)<CR>
 
 nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
-nnoremap <silent> <leader>vt :call ToggleDiffView()<CR>
+
