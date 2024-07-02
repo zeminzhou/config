@@ -323,6 +323,9 @@ nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 nnoremap <silent> <leader>ft :Tags<CR>
+let g:fzf_vim = {}
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-p']
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
@@ -337,3 +340,4 @@ nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
 
 " ag.vim
 nnoremap <leader>fw :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
+
