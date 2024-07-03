@@ -323,9 +323,22 @@ nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 nnoremap <silent> <leader>ft :Tags<CR>
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
 let g:fzf_vim = {}
-let g:fzf_vim.listproc = { list -> fzf#vim#listproc#location(list) }
+let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-p']
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-l': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 " vim-interestingwords
 let g:interestingWordsDefaultMappings = 0
