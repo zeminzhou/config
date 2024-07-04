@@ -323,6 +323,7 @@ nnoremap <silent> <leader>fc :Commands<CR>
 nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 nnoremap <silent> <leader>ft :Tags<CR>
+nnoremap <silent> <leader>fj :Jumps<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
 let g:fzf_vim = {}
 let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
