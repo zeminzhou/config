@@ -312,7 +312,7 @@ set showcmd
 " FZF
 command! -bang -nargs=? -complete=dir Files
 \ call fzf#vim#files(<q-args>,
-\ {'options': ['--layout=reverse', '--info=inline', '--preview',
+\ {'options': ['--prompt=Files> ', '--layout=reverse', '--info=inline', '--preview',
 \ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
 \ <bang>0)
 nnoremap <silent> <leader>ff :Files<CR>
@@ -326,8 +326,7 @@ nnoremap <silent> <leader>ft :Tags<CR>
 nnoremap <silent> <leader>fj :Jumps<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
 let g:fzf_vim = {}
-let g:fzf_vim.listproc = { list -> fzf#vim#listproc#quickfix(list) }
-let g:fzf_vim.preview_window = ['right,50%', 'ctrl-p']
+let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-p']
 
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))

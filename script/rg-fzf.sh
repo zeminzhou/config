@@ -13,8 +13,9 @@ IFS=: read -ra selected < <(
       --bind "ctrl-r:unbind(ctrl-r)+change-prompt(1. ripgrep> )+disable-search+reload($RG_PREFIX {q} || true)+rebind(change,ctrl-f)" \
       --prompt '1. Ripgrep> ' \
       --delimiter : \
+      --height=80% \
       --header '╱ CTRL-R (Ripgrep mode) ╱ CTRL-F (fzf mode) ╱' \
       --preview 'bat --color=always {1} --highlight-line {2}' \
-      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+      --preview-window 'up,40%,border-bottom,+{2}+3/3,~3'
 )
 [ -n "${selected[0]}" ] && vim "${selected[0]}" "+${selected[1]}"
