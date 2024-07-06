@@ -194,6 +194,10 @@ bindkey '^E' end-of-line
 MY_PROMPT=$(echo $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $2}')
 function zle-line-init zle-keymap-select {
     ZSH_KUBECTL_SHORT=$(echo $ZSH_KUBECTL_PROMPT | awk -F '/' '{print $2}')
+    if [ -z $ZSH_KUBECTL_SHORT ]
+    then
+        ZSH_KUBECTL_SHORT="no-kubectx"
+    fi
     MY_PROMPT="${${KEYMAP/vicmd/vi-normal}/(main|viins)/$ZSH_KUBECTL_SHORT}"
     zle reset-prompt
 }
