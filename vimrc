@@ -91,7 +91,7 @@ if has('nvim')
 
 endif
 
-if v:version > 910
+if v:version >= 901
     " Plug 'ludovicchabant/vim-gutentags'
     " Plug 'skywind3000/gutentags_plus'
     " vim9 plug
