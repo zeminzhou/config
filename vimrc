@@ -1,40 +1,43 @@
 " ==============================================================================
 " ================================ KEY MAP =====================================
 " ==============================================================================
+" <Leader>M     :call UncolorAllWords()<CR>
 " <Leader>db    :bd<CR>
-" <Leader>rn    :set relativenumber!<CR> 
-" <Leader>nu    :set number!<CR> 
-" <Leader>pt    :set paste!<CR> 
-" <Leader>ll    <Plug>(easymotion-lineforward)
-" <Leader>jj    <Plug>(easymotion-j)
-" <Leader>kk    <Plug>(easymotion-k)
-" <Leader>hh    <Plug>(easymotion-linebackward)
-" <Leader>tt    :TagbarToggle<CR>
-" <Leader>ut    :UndotreeToggle<CR> 
+" <Leader>fw    :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
 " <Leader>gd    :Gdiffsplit<CR>
 " <Leader>gt    :GitGutterToggle<CR>
 " <Leader>gv    :GV?<CR>
+" <Leader>hh    <Plug>(easymotion-linebackward)
 " <Leader>hn    :GitGutterNextHunk<CR>
 " <Leader>hp    :GitGutterPrevHunk<CR>
-" <Leader>yw    <Plug>(YCMFindSymbolInWorkspace)
-" <Leader>yh    <Plug>(YCMCallHierarchy)
-" <Leader>yd    :YcmCompleter GoToDefinition<CR>
-" <Leader>yo    :YcmCompleter GoToDocumentOutline<CR>
-" <Leader>yr    :YcmCompleter GoToReferences<CR>
-" <Leader>yc    :YcmCompleter GoToCallers<CR>
-" <Leader>ys    :YcmCompleter GoToSymbol<CR>
-" <Leader>yi    :YcmCompleter GoToImplementation<CR>
-" <Leader>yf    :YcmCompleter GoToInclude<CR>
-" <Leader>yt    :YcmCompleter GoToType<CR>
-" <Leader>ye    :YcmDiags<CR>
-" <Leader>to    :FloatermToggle<CR>
-" <Leader>th    <C-\><C-n>:FloatermToggle<CR>
-" <Leader>tc    <C-\><C-n>:FloatermKill<CR>
+" <Leader>jj    <Plug>(easymotion-j)
+" <Leader>kk    <Plug>(easymotion-k)
+" <Leader>ll    <Plug>(easymotion-lineforward)
+" <Leader>lt    :call ToggleGitLens()<CR>
 " <Leader>mm    :call InterestingWords('n')<CR>
 " <Leader>mm    :call InterestingWords('v')<CR>
-" <Leader>M     :call UncolorAllWords()<CR>
-" <Leader>lt    :call ToggleGitLens()<CR>
-" <Leader>fw    :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
+" <Leader>nf    :NERDTreeFind<CR>
+" <Leader>nt    :NERDTreeToggle<CR>
+" <Leader>nt    :nerdtreemirror<cr>
+" <Leader>nu    :set number!<CR> 
+" <Leader>pt    :set paste!<CR> 
+" <Leader>rn    :set relativenumber!<CR> 
+" <Leader>tc    <C-\><C-n>:FloatermKill<CR>
+" <Leader>th    <C-\><C-n>:FloatermToggle<CR>
+" <Leader>to    :FloatermToggle<CR>
+" <Leader>tt    :TagbarToggle<CR>
+" <Leader>ut    :UndotreeToggle<CR> 
+" <Leader>yc    :YcmCompleter GoToCallers<CR>
+" <Leader>yd    :YcmCompleter GoToDefinition<CR>
+" <Leader>ye    :YcmDiags<CR>
+" <Leader>yf    :YcmCompleter GoToInclude<CR>
+" <Leader>yh    <Plug>(YCMCallHierarchy)
+" <Leader>yi    :YcmCompleter GoToImplementation<CR>
+" <Leader>yo    :YcmCompleter GoToDocumentOutline<CR>
+" <Leader>yr    :YcmCompleter GoToReferences<CR>
+" <Leader>ys    :YcmCompleter GoToSymbol<CR>
+" <Leader>yt    :YcmCompleter GoToType<CR>
+" <Leader>yw    <Plug>(YCMFindSymbolInWorkspace)
 " ==============================================================================
 " ==============================================================================
 " ==============================================================================
@@ -86,12 +89,14 @@ Plug 'chriskempson/base16-vim'
 
 if has('nvim')
 
-else
+endif
+
+if v:version > 910
     " Plug 'ludovicchabant/vim-gutentags'
     " Plug 'skywind3000/gutentags_plus'
     " vim9 plug
-    " Plug 'zeminzhou/diffview.vim'
     Plug 'Eliot00/git-lens.vim'
+    Plug 'zeminzhou/diffview.vim'
 endif
 
 Plug 'easymotion/vim-easymotion'
@@ -194,6 +199,7 @@ let g:rustfmt_fail_silently = 1
 " NERDTree
 nnoremap <leader>nt :NERDTreeMirror<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ 'Modified'  :'~',
 \ 'Staged'    :'+',
