@@ -150,7 +150,8 @@ set backspace=indent,eol,start
 set ambiwidth=double
 
 syntax enable
-colorscheme seoul256
+" colorscheme seoul256
+colorscheme everforest
 
 inoremap jk <esc>
 vnoremap jk <esc>
@@ -316,12 +317,8 @@ tnoremap <silent> <leader>tc <C-\><C-n>:FloatermKill<CR>
 set showcmd
 
 " FZF
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>,
-\ {'options': ['--prompt=Files> ', '--layout=reverse', '--info=inline', '--preview',
-\ '~/.vim/plugged/fzf.vim/bin/preview.sh {} 2> /dev/null || tree -C {} 2> /dev/null']},
-\ <bang>0)
-nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fa :Files<CR>
+nnoremap <silent> <leader>ff :GFiles<CR>
 nnoremap <silent> <leader>fg :GFiles?<CR>
 nnoremap <silent> <leader>fb :Buffers<CR>
 nnoremap <silent> <leader>fl :Lines<CR>
@@ -330,7 +327,7 @@ nnoremap <silent> <leader>fh :History:<CR>
 nnoremap <silent> <leader>fm :Maps<CR>
 nnoremap <silent> <leader>ft :Tags<CR>
 nnoremap <silent> <leader>fj :Jumps<CR>
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-p']
 
@@ -356,6 +353,8 @@ nnoremap <silent> N :call WordNavigation(0)<CR>
 
 " git-lens
 nnoremap <silent> <leader>lt :call ToggleGitLens()<CR>
+
+nnoremap <silent> <leader>vt :call ToggleDiffView()<CR>
 
 " ag.vim
 nnoremap <leader>fw :<C-U><C-R>=printf("Ag %s", expand("<cword>"))<CR><CR>
